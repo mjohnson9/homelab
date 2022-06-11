@@ -1,0 +1,10 @@
+{
+    "yaml.schemas": {
+        "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible.json#/$defs/playbook": [
+            "file:///home/michael/Projects/homelab/metal/cluster.yml",
+            "file:///home/michael/Projects/homelab/metal/boot.yml"
+        ],
+        "https://raw.githubusercontent.com/rancher/k3d/main/pkg/config/config.versions.schema.json": "file:///home/michael/Projects/homelab/metal/k3d-dev.yaml",
+        "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-inventory.json": "file:///home/michael/Projects/homelab/metal/inventories/prod.yml"
+    }
+}
