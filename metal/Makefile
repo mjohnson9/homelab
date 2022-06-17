@@ -2,7 +2,7 @@
 
 env ?= "prod"
 
-default: cluster
+default: k3d
 
 ~/.ssh/id_ed25519:
 	ssh-keygen -t ed25519 -f "$@"

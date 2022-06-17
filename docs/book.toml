@@ -10,8 +10,8 @@ command = "mdbook-mermaid"
 
 [output.html]
 additional-js = ["mermaid.min.js", "mermaid-init.js"]
-git-repository-url = "https://github.com/khuedoan/homelab"
-edit-url-template = "https://github.com/khuedoan/homelab/edit/master/docs/{path}"
+git-repository-url = "https://github.com/mjohnson9/homelab"
+edit-url-template = "https://github.com/mjohnson9/homelab/edit/master/docs/{path}"
 
 # TODO deprecate this after 6 months
 [output.html.redirect]
