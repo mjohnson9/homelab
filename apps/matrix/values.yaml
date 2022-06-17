@@ -25,7 +25,7 @@ elementweb:
 dendrite:
   polylith: false
   image:
-    name: "locmai/dendrite-monolith:010922"  # TODO switch to official image
+    name: "locmai/dendrite-monolith:010922" # TODO switch to official image
     pullPolicy: IfNotPresent
   configuration:
     version: 2
@@ -75,7 +75,7 @@ dendrite:
       external-dns.alpha.kubernetes.io/target: "homelab-tunnel.172-28-0-3.nip.io"
       external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
       nginx.ingress.kubernetes.io/proxy-body-size: 32m
-      hajimari.io/enable: 'false'
+      hajimari.io/enable: "false"
     hosts:
       - host: *backend_host
         paths:
