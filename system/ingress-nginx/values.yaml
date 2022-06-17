@@ -5,6 +5,6 @@ ingress-nginx:
     metrics:
       enabled: true
       serviceMonitor:
-        enabled: true
+        enabled: false
   tcp:
     22: gitea/gitea-ssh:22
