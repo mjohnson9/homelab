@@ -13,33 +13,21 @@ import time
 from selenium import webdriver
 
 apps = [
+    {"name": "home", "url": "https://home.johnson.computer"},
+    {"name": "gitea", "url": "https://git.johnson.computer/ops/homelab"},
+    {"name": "argocd", "url": "https://argocd.johnson.computer/applications/root"},
+    {"name": "vault", "url": "https://vault.johnson.computer/ui/vault/secrets"},
     {
-        'name': 'home',
-        'url': 'https://home.johnson.computer'
+        "name": "tekton",
+        "url": "https://tekton.johnson.computer/#/namespaces/tekton-pipelines/pipelineruns/homelab?pipelineTask=external&step=plan",
     },
     {
-        'name': 'gitea',
-        'url': 'https://git.johnson.computer/ops/homelab'
+        "name": "matrix",
+        "url": "https://chat.johnson.gg/#/room/#random:matrix.khuedoan.com",
     },
     {
-        'name': 'argocd',
-        'url': 'https://argocd.johnson.computer/applications/root'
-    },
-    {
-        'name': 'vault',
-        'url': 'https://vault.johnson.computer/ui/vault/secrets'
-    },
-    {
-        'name': 'tekton',
-        'url': 'https://tekton.johnson.computer/#/namespaces/tekton-pipelines/pipelineruns/homelab?pipelineTask=external&step=plan'
-    },
-    {
-        'name': 'matrix',
-        'url': 'https://chat.johnson.computer/#/room/#random:matrix.khuedoan.com'
-    },
-    {
-        'name': 'grafana',
-        'url': 'https://grafana.johnson.computer/d/efa86fd1d0c121a26444b636a3f509a8/kubernetes-compute-resources-cluster'  # wtf is this ID
+        "name": "grafana",
+        "url": "https://grafana.johnson.computer/d/efa86fd1d0c121a26444b636a3f509a8/kubernetes-compute-resources-cluster",  # wtf is this ID
     },
 ]
 
@@ -50,13 +38,13 @@ driver = webdriver.Firefox(
     options=options,
     firefox_profile=webdriver.FirefoxProfile(  # TODO deprecated
         profile_directory="/home/michael/.mozilla/firefox/h05irklw.default-release"  # TODO do not hard code
-    )
+    ),
 )
 driver.set_window_size(1920, 1080)
 
 for app in apps:
     print(f"Opening {app['url']}")
-    driver.get(app['url'])
+    driver.get(app["url"])
     time.sleep(3)  # TODO wait for full page load instead of sleep
     driver.save_screenshot(f"{app['name']}.png")
     print(f"Screenshot saved to {app['name']}.png")
