@@ -1,11 +1,11 @@
 renovate:
   cronjob:
-    schedule: '0 9 1 * *'  # At 09:00 every month
+    schedule: "0 9 1 * *" # At 09:00 every month
   renovate:
     config: |
       {
         "platform": "gitea",
-        "endpoint": "https://git.172-28-0-3.nip.io/api/v1",
+        "endpoint": "https://git.johnson.computer/api/v1",
         "gitAuthor": "Renovate Bot <bot@renovateapp.com>",
         "autodiscover": true
       }

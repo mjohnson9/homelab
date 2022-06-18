@@ -1,4 +1,4 @@
-module git.172-28-0-3.nip.io/mjohnson9/homelab/vault/init
+module git.johnson.computer/mjohnson9/homelab/vault/init
 
 go 1.17
 

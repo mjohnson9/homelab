@@ -1,6 +1,6 @@
 trow:
   trow:
-    domain: registry.172-28-0-3.nip.io
+    domain: registry.johnson.computer
     # user: user
     # password: password
     validation:
@@ -14,13 +14,13 @@ trow:
       proxyDockerHub: false
 
   ingress:
-    enabled: false  # TODO https://github.com/ContainerSolutions/trow/issues/282
+    enabled: false # TODO https://github.com/ContainerSolutions/trow/issues/282
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
-      nginx.ingress.kubernetes.io/proxy-body-size: '0'
-      hajimari.io/enable: 'false'
+      nginx.ingress.kubernetes.io/proxy-body-size: "0"
+      hajimari.io/enable: "false"
     hosts:
-      - host: &host registry.172-28-0-3.nip.io
+      - host: &host registry.johnson.computer
         paths:
           - /
     tls:
