@@ -1,0 +1,42 @@
+- name: Create network bond
+  community.general.nmcli:
+    state: present
+
+    conn_name: Management
+
+    type: team
+    ifname: management
+
+    mac: "50:9a:4c:60:59:e7"
+
+    runner: lacp
+
+    # this isn't a general transit interface
+    route_metric4: 800
+    route_metric6: 800
+
+- name: Add bond child interface
+  community.general.nmcli:
+    state: present
+    type: team-slave
+    conn_name: "team-child-{{ item }}"
+    ifname: "{{ item }}"
+    master: management
+
+  with_items:
+    - eno1
+    - eno2
+
+- name: Add server VLAN
+  community.general.nmcli:
+    state: present
+    type: vlan
+
+    conn_name: Servers
+
+    vlandev: management
+    vlanid: 5
+    ifname: servers
+
+    ip4: 10.0.2.10
+    gw4: 10.0.2.1
