@@ -43,12 +43,4 @@ selinux --disabled
 # Disable firewall
 firewall --disabled
 
-%packages
-@^minimal-environment
-iscsi-initiator-utils
-%end
-
-# Enable iSCSI for Kubernetes storage
-services --enable=iscsid
-
 reboot
