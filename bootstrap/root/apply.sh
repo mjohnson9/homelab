@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 curl -fks --connect-timeout 5 https://git.johnson.computer \
     || extra_args="--values values-seed.yaml"
 
