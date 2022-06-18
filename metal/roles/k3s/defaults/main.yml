@@ -9,4 +9,5 @@ k3s_server_config:
     - traefik
   disable-cloud-controller: true
   secrets-encryption: true
+  snapshotter: native
   flannel-iface: servers
