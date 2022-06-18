@@ -31,3 +31,43 @@
   yum:
     name: zfs
     state: present
+
+- name: Load ZFS kernel module
+  community.general.modprobe:
+    name: zfs
+    state: present
+    mode: 0600
+
+- name: Create directory to store ZFS encryption keys
+  ansible.builtin.file:
+    path: /etc/zfs-keys
+    state: directory
+    mode: 0700
+
+- name: Copy tank key to node
+  ansible.builtin.copy:
+    src: tank-key
+    dest: /etc/zfs-keys/tank
+    owner: root
+    group: root
+    mode: 0400
+
+- name: Activate ZFS pool
+  ansible.builtin.command: /usr/sbin/zpool import tank
+  register: result
+  changed_when: "result.rc == 0"
+  failed_when: 'result.rc != 0 and "a pool with that name already exists" not in result.stderr'
+
+- name: Cache ZFS pool
+  ansible.builtin.command: /usr/sbin/zpool set cachefile=/etc/zfs/zpool.cache tank
+  changed_when: False
+
+- name: Unlock ZFS pool
+  ansible.builtin.command: /usr/sbin/zfs load-key -r tank
+  register: result
+  changed_when: '"successfully loaded" in result.stdout'
+  failed_when: '"Key load error" in result.stderr'
+
+- name: Mount ZFS volumes
+  ansible.builtin.command: /usr/sbin/zfs mount -a
+  changed_when: False

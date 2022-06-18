@@ -13,7 +13,9 @@ clearpart --all --drives={{ hostvars[item]['disk'] }}
 # Partitioning
 ignoredisk --only-use={{ hostvars[item]['disk'] }}
 partition /boot/efi --fstype=vfat --size=512
-partition / --fstype=ext4 --grow --fsoptions=noatime,discard
+partition /boot --fstype=ext4 --size=1024
+partition / --fstype=ext4 --encrypted --size=65536 --maxsize=131072 --grow --fsoptions=discard
+partition swap --recommended --encrypted
 
 # Configure management network
 # TODO: Remove; these hosts shouldn't be on the management network on non-IPMI interfaces
@@ -25,6 +27,7 @@ network --device=management --interfacename=servers --vlanid=5 --bootproto=stati
 # Use network installation
 repo --name="Minimal" --baseurl=http://{{ ansible_default_ipv4.address }}/os/Minimal
 url --url="http://{{ ansible_default_ipv4.address }}/os"
+
 # Disable Setup Agent on first boot
 firstboot --disable
 # Do not configure the X Window System
@@ -46,5 +49,9 @@ selinux --disabled
 
 # Disable firewall
 firewall --disabled
+
+%packages
+@^minimal-environment
+%end
 
 reboot

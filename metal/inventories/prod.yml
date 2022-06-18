@@ -2,8 +2,11 @@ metal:
   children:
     masters:
       hosts:
-        hv01:
+        hv01-home.johnson.computer:
           ansible_host: 10.0.2.10
-          mac: "50:9a:4c:60:59:e7"
-          disk: disk/by-id/usb-DELL_IDSDM_012345678901-0:0
-          network_interface: eno1
+          disk: disk/by-id/ata-Samsung_SSD_860_EVO_2TB_S597NZFNA02430M
+          network:
+            mac: "50:9a:4c:60:59:e7"
+            bond_members: ["eno1", "eno2"]
+            gateway: 10.0.2.1
+            netmask: 255.255.255.0
