@@ -1,0 +1,12 @@
+- name: Download ZFS RPM
+  ansible.builtin.get_url:
+    url: "{{ rpm_url }}"
+    dest: "/tmp/{{ rpm_url | basename }}"
+    checksum: "{{ rpm_checksum }}"
+    mode: 0644
+  register: rpm
+
+- name: Install ZFS package
+  yum:
+    name: "{{ rpm.dest }}"
+    state: present
