@@ -1,4 +1,4 @@
-- name: Download ZFS RPM
+- name: Download ZFS release RPM
   ansible.builtin.get_url:
     url: "{{ rpm_url }}"
     dest: "/tmp/{{ rpm_url | basename }}"
@@ -6,7 +6,28 @@
     mode: 0644
   register: rpm
 
-- name: Install ZFS package
+- name: Importing OpenZFS GPG key
+  ansible.builtin.rpm_key:
+    state: present
+    fingerprint: C93A FFFD 9F3F 7B03 C310 CEB6 A9D5 A1C0 F14A B620
+    key: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xc93afffd9f3f7b03c310ceb6a9d5a1c0f14ab620
+
+- name: Install ZFS release package
   yum:
     name: "{{ rpm.dest }}"
+    state: present
+
+- name: Enable EPEL
+  yum:
+    name: epel-release
+    state: present
+
+- name: Install kernel development package
+  yum:
+    name: kernel-devel
+    state: present
+
+- name: Install ZFS package
+  yum:
+    name: zfs
     state: present
