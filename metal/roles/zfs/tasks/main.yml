@@ -36,7 +36,6 @@
   community.general.modprobe:
     name: zfs
     state: present
-    mode: 0600
 
 - name: Create directory to store ZFS encryption keys
   ansible.builtin.file:
