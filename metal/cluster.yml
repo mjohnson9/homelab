@@ -1,7 +1,6 @@
 - name: Create Kubernetes cluster
   hosts: metal
   roles:
-    - network
     - zfs
     - k3s
     - automatic_upgrade
