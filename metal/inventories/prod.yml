@@ -3,11 +3,7 @@ metal:
     masters:
       hosts:
         hv01:
-          {
-            ansible_host: 10.0.2.10,
-            mac: "50:9a:4c:60:59:e7",
-            disk: disk/by-id/usb-DELL_IDSDM_012345678901-0:0,
-            network_interface: eno1,
-          }
-    workers:
-      hosts: []
+          ansible_host: 10.0.2.10
+          mac: "50:9a:4c:60:59:e7"
+          disk: disk/by-id/usb-DELL_IDSDM_012345678901-0:0
+          network_interface: eno1
