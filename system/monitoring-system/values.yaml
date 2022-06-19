@@ -38,17 +38,31 @@ kube-prometheus-stack:
         group_wait: 30s
         group_interval: 5m
         repeat_interval: 12h
-        receiver: "mj-email"
+        receiver: "null"
         routes:
           - receiver: "null"
             matchers:
               - alertname =~ "InfoInhibitor|Watchdog"
+          - receiver: "mj-sms"
+            matchers:
+              - severity =~ "critical"
+            continue: true
+          - receiver: "mj-email"
+            continue: true
 
       receivers:
         - name: "mj-email"
           email_configs:
             - send_resolved: true
               to: "Mike Johnson <michael@johnson.gg>"
+        - name: "mj-sms"
+          email_configs:
+            - send_resolved: true
+              to: "6788358132@tmomail.net"
+              headers:
+                Subject: '{{ template "pushover.default.title" . }}'
+              text: '{{ template "pushover.default.message" . }}'
+              html: ""
         - name: "null"
 
   grafana:
