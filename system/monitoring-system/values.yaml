@@ -1,4 +1,15 @@
 kube-prometheus-stack:
+  alertmanager:
+    config:
+      receivers:
+        - name: "mj-email"
+          emailConfigs:
+            - sendResolved: true
+              to: "Mike Johnson <michael@johnson.gg>"
+              from: "Alert Manager <alertmanager@johnson.computer>"
+              smarthost: "smtp.smtp:25"
+              requireTls: false
+
   grafana:
     adminPassword: null
     ingress:
