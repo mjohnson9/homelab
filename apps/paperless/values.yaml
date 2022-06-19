@@ -25,3 +25,4 @@ paperless:
     enabled: true
   redis:
     enabled: true
+    architecture: standalone
