@@ -1,3 +1,11 @@
+- name: Add udev rule for disk schedulers
+  ansible.builtin.copy:
+    src: zfs-io-scheduler.rules
+    dest: /etc/udev/rules.d/90-zfs-io-scheduler.rules
+    owner: root
+    group: root
+    mode: 0644
+
 - name: Download ZFS release RPM
   ansible.builtin.get_url:
     url: "{{ rpm_url }}"
@@ -70,3 +78,9 @@
 - name: Mount ZFS volumes
   ansible.builtin.command: /usr/sbin/zfs mount -a
   changed_when: False
+
+- name: Enable monthly scrubbing
+  ansible.builtin.systemd:
+    name: zfs-scrub-monthly@tank.timer
+    enabled: true
+    state: started
