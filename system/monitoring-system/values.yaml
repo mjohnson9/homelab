@@ -1,14 +1,21 @@
 kube-prometheus-stack:
   alertmanager:
     config:
+      global:
+        # Alerts without an end timeout after 5 minutes
+        resolve_timeout: 5m
+
+        # SMTP configuration
+        smarthost: "smtp.smtp:25"
+        smtp_hello: "alertmanager.cluster-home.johnson.computer"
+        from: "Alert Manager <alertmanager@johnson.computer>"
+        smtp_require_tls: false
+
       receivers:
         - name: "mj-email"
           email_configs:
             - send_resolved: true
               to: "Mike Johnson <michael@johnson.gg>"
-              from: "Alert Manager <alertmanager@johnson.computer>"
-              smarthost: "smtp.smtp:25"
-              require_tls: false
         - name: "null"
 
   grafana:
