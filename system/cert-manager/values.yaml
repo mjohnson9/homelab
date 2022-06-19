@@ -1,5 +1,12 @@
 cert-manager:
+  # bypass our split-horizon DNS
+  podDnsConfig:
+    nameservers:
+      - "1.1.1.1"
+      - "1.0.0.1"
+
   installCRDs: true
+
   prometheus:
     enabled: true
     servicemonitor:
