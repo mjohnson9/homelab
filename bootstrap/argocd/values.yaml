@@ -17,7 +17,6 @@ argo-cd:
           end
         end
         return hs
-        configManagementPlugins: |
       configManagementPlugins: |
         - name: kustomized-helm
           init:
