@@ -1,11 +1,16 @@
 external-dns:
-  provider: cloudflare
+  provider: aws
   env:
-    - name: CF_API_TOKEN
+    - name: AWS_ACCESS_KEY_ID
       valueFrom:
         secretKeyRef:
-          name: cloudflare-api-token
-          key: value
+          name: route53-access-key
+          key: access-key-id
+    - name: AWS_SECRET_ACCESS_KEY
+      valueFrom:
+        secretKeyRef:
+          name: route53-access-key
+          key: secret-access-key
   extraArgs:
     - --annotation-filter=external-dns.alpha.kubernetes.io/exclude notin (true)
 
