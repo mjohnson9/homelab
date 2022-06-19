@@ -1,9 +1,5 @@
 kube-prometheus-stack:
   alertmanager:
-    annotations:
-      # there are some issues with this resource not applying its configs correctly, so recreate it every time it changes
-      argocd.argoproj.io/sync-options: Replace=true
-
     config:
       global:
         # Alerts without an end timeout after 5 minutes
