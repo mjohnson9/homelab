@@ -23,7 +23,7 @@ gitea:
         LANDING_PAGE: explore
         ROOT_URL: https://git.johnson.computer
   persistence:
-    storageClass: local-path
+    storageClass: zfs-default
   postgresql:
     persistence:
       storageClass: zfs-postgresql
