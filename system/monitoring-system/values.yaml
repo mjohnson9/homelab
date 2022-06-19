@@ -10,9 +10,9 @@ kube-prometheus-stack:
         resolve_timeout: 5m
 
         # SMTP configuration
-        smarthost: "smtp.smtp:25"
+        smtp_smarthost: "smtp.smtp:25"
         smtp_hello: "alertmanager.cluster-home.johnson.computer"
-        from: "Alert Manager <alertmanager@johnson.computer>"
+        smtp_from: "Alert Manager <alertmanager@johnson.computer>"
         smtp_require_tls: false
 
       receivers:
