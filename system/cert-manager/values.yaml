@@ -5,5 +5,7 @@ cert-manager:
     servicemonitor:
       enabled: true
 
+accessKeyID: AKIARJTSQTR3JRTGU2XY
+
 issuer:
   email: operations@johnson.gg
