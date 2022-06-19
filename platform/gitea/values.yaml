@@ -20,7 +20,10 @@ gitea:
           - *host
   gitea:
     admin:
-      existingSecret: gitea-admin-secret
+      existingSecret:
+      username:
+      password:
+      email:
     config:
       server:
         LANDING_PAGE: explore
