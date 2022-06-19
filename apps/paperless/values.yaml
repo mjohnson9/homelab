@@ -1,4 +1,7 @@
 paperless:
+  # fix errors about failed ocnnections to Redis
+  env:
+    PAPERLESS_REDIS: ""
   ingress:
     main:
       enabled: true
