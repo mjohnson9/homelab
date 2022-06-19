@@ -3,7 +3,7 @@ kind: StorageClass
 metadata:
   name: zfs-default
   annotations:
-    storageclass.kubernetes.io/is-default-class: true
+    storageclass.kubernetes.io/is-default-class: "true"
 provisioner: zfs.csi.openebs.io
 volumeBindingMode: WaitForFirstConsumer
 allowVolumeExpansion: true
