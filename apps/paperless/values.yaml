@@ -1,4 +1,6 @@
 paperless:
+  env:
+    PAPERLESS_REDIS: redis://paperless-redis-master
   ingress:
     main:
       enabled: true
