@@ -26,4 +26,4 @@ gitea:
     storageClass: local-path
   postgresql:
     persistence:
-      storageClass: local-path
+      storageClass: zfs-postgresql
