@@ -9,6 +9,7 @@ kube-prometheus-stack:
               from: "Alert Manager <alertmanager@johnson.computer>"
               smarthost: "smtp.smtp:25"
               require_tls: false
+        - name: "null"
 
   grafana:
     adminPassword: null
