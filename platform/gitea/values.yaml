@@ -6,6 +6,9 @@ gitea:
       cert-manager.io/cluster-issuer: letsencrypt-prod
       hajimari.io/appName: Gitea
       hajimari.io/icon: git
+
+      # only allow internal clients
+      nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8
     hosts:
       - host: &host git.johnson.computer
         paths:

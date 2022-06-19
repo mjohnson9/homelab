@@ -24,6 +24,9 @@ argo-cd:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         hajimari.io/appName: ArgoCD
         hajimari.io/icon: robot
+
+        # only allow internal clients
+        nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8
       hosts:
         - &host argocd.johnson.computer
       tls:

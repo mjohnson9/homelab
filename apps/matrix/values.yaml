@@ -6,6 +6,9 @@ elementweb:
       cert-manager.io/cluster-issuer: letsencrypt-prod
       hajimari.io/appName: Chat
       hajimari.io/icon: chat
+
+      # only allow internal clients
+      nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8
     hosts:
       - host: &frontend_host chat.johnson.gg
         paths:

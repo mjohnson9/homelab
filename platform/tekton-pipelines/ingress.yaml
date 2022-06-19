@@ -7,6 +7,9 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     hajimari.io/appName: Tekton
     hajimari.io/icon: robot-industrial
+
+    # only allow internal clients
+    nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8
 spec:
   ingressClassName: nginx
   rules:
