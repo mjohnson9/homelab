@@ -21,3 +21,6 @@ paperless:
             - *host
   postgresql:
     enabled: true
+    persistence:
+      enabled: true
+      storageClass: zfs-postgresql
