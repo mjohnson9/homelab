@@ -89,7 +89,7 @@ kube-prometheus-stack:
         url: http://loki.loki:3100
       - name: Alertmanager
         type: alertmanager
-        url: http://alertmanager:9093
+        url: http://monitoring-system-kube-pro-alertmanager:9093
     envFromSecret: grafana-secrets
     grafana.ini:
       server:
