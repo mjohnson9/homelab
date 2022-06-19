@@ -36,6 +36,7 @@ kube-prometheus-stack:
             - "severity = info"
           equal:
             - "namespace"
+
       route:
         group_by: ["namespace"]
         group_wait: 30s
