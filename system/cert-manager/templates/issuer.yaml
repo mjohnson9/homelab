@@ -10,9 +10,9 @@ spec:
       name: letsencrypt-prod
     solvers:
     - dns01:
-      route53:
-        region: us-east-1
-        accessKeyID: {{ .Values.accessKeyID }}
-        secretAccessKeySecretRef:
-          name: route53-access-key
-          key: secret-access-key
+        route53:
+          region: us-east-1
+          accessKeyID: {{ .Values.accessKeyID }}
+          secretAccessKeySecretRef:
+            name: route53-access-key
+            key: secret-access-key
