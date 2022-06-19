@@ -1,5 +1,6 @@
 paperless:
   env:
+    PAPERLESS_DBHOST: paperless-postgresql
     PAPERLESS_REDIS: redis://paperless-redis-master
   ingress:
     main:
