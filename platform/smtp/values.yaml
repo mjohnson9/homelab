@@ -1,0 +1,4 @@
+replicaCount: 3
+
+smtp:
+  existingSecret: smtp-secrets
