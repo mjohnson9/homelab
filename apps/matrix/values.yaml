@@ -25,9 +25,11 @@ elementweb:
 
 dendrite:
   polylith: false
+
   image:
     name: "locmai/dendrite-monolith:010922" # TODO switch to official image
     pullPolicy: IfNotPresent
+
   configuration:
     version: 2
     servername: &backend_host matrix.johnson.gg
@@ -44,17 +46,25 @@ dendrite:
       in_memory: false
       addresses:
         - nats://matrix-nats:4222
+
+  components:
+    clientapi:
+      registration:
+        disabled: true
+
   persistence:
     storageClass: zfs-default
     logs:
       capacity: 1Gi
     media:
       capacity: 5Gi
+
   nats:
     enabled: true
     nats:
       jetstream:
         enabled: true
+
   postgresql:
     enabled: true
     global:
@@ -68,6 +78,7 @@ dendrite:
       accessModes:
         - ReadWriteOnce
       size: 5Gi
+
   ingress:
     enabled: true
     className: nginx
