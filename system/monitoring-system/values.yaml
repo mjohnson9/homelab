@@ -22,6 +22,36 @@ kube-prometheus-stack:
         smtp_from: "Alert Manager <alertmanager@johnson.computer>"
         smtp_require_tls: false
 
+      inhibit_rules:
+        # if an alert downgrades in severity, inhibit a new notification
+        - source_matchers:
+            severity: critical
+          target_matchers:
+            severity: warning
+          equal:
+            - namespace
+            - alertname
+        - source_matchers:
+            severity: critical
+          target_matchers:
+            severity: info
+          equal:
+            - namespace
+            - alertname
+        - source_matchers:
+            severity: warning
+          target_matchers:
+            severity: info
+          equal:
+            - namespace
+            - alertname
+        - source_matchers:
+            alertname: InfoInhibitor
+          target_matchers:
+            severity: info
+          equal:
+            - namespace
+
       route:
         group_wait: 30s
         group_interval: 5m
