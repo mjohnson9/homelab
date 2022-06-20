@@ -61,7 +61,7 @@ dendrite:
     logs:
       capacity: 1Gi
     media:
-      capacity: 5Gi
+      capacity: 30Gi
 
   nats:
     enabled: true
@@ -88,7 +88,7 @@ dendrite:
     className: nginx
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
-      nginx.ingress.kubernetes.io/proxy-body-size: 32m
+      nginx.ingress.kubernetes.io/proxy-body-size: 1g
       hajimari.io/enable: "false"
       external-dns.alpha.kubernetes.io/target: ""
       external-dns.alpha.kubernetes.io/cloudflare-proxied: ""
