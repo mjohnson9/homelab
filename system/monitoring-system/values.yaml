@@ -132,3 +132,15 @@ kube-prometheus-stack:
       serviceMonitorSelectorNilUsesHelmValues: false
       podMonitorSelectorNilUsesHelmValues: false
       probeSelectorNilUsesHelmValues: false
+
+  kubeControllerManager:
+    endpoints:
+      - 10.0.2.10
+
+  kubeScheduler:
+    endpoints:
+      - 10.0.2.10
+
+  kubeProxy:
+    endpoints:
+      - 10.0.2.10

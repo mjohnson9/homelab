@@ -7,3 +7,12 @@ token-file: {{ k3s_token_file }}
 {% if 'masters' in group_names %}
 {{ k3s_server_config | to_nice_yaml }}
 {% endif %}
+
+# enable metrics for Prometheus to scrape
+etcd-expose-metrics: true
+kube-controller-manager-arg:
+- bind-address={{ hostvars[inventory_hostname].ansible_host }}
+kube-proxy-arg:
+- metrics-bind-address={{ hostvars[inventory_hostname].ansible_host }}
+kube-scheduler-arg:
+- bind-address={{ hostvars[inventory_hostname].ansible_host }}
