@@ -37,6 +37,7 @@ gitea:
   service:
     ssh:
       type: LoadBalancer
+      externalTrafficPolicy: Local
 
   persistence:
     storageClass: zfs-default
