@@ -25,6 +25,14 @@ gitea:
       server:
         LANDING_PAGE: explore
         ROOT_URL: https://git.johnson.computer
+
+      mailer:
+        ENABLED: "true"
+        FROM: "git@johnson.computer"
+        MAILER_TYPE: smtp
+        HOST: "smtp.smtp:25"
+        IS_TLS_ENABLED: "false"
+
   persistence:
     storageClass: zfs-default
   postgresql:
