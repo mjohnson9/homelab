@@ -1,5 +1,16 @@
 kube-prometheus-stack:
   alertmanager:
+    alertmanagerSpec:
+      replicas: 3
+
+      storage:
+        volumeClaimTemplate:
+          spec:
+            storageClassName: zfs-default
+            resources:
+              requests:
+                storage: 1Gi
+
     config:
       global:
         # Alerts without an end timeout after 5 minutes
