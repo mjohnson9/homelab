@@ -33,6 +33,14 @@
     group: root
     mode: 0755
 
+- name: Copy k3s shutdown script to nodes
+  ansible.builtin.copy:
+    src: k3s-killall.sh
+    dest: /usr/local/bin/k3s-killall
+    owner: root
+    group: root
+    mode: 0744
+
 - name: Ensure config directories exist
   ansible.builtin.file:
     path: "{{ item }}"
@@ -79,6 +87,14 @@
     - src: k3s.service.j2
       dest: "{{ k3s_service_file }}"
 
+- name: Copy k3s shutdown service to nodes
+  ansible.builtin.copy:
+    src: shutdown-k3s.service
+    dest: "{{ k3s_shutdown_service_file }}"
+    owner: root
+    group: root
+    mode: 0644
+
 - name: Enable k3s service
   ansible.builtin.systemd:
     name: k3s
@@ -86,6 +102,14 @@
     state: started
   register: k3s_service
   until: k3s_service is succeeded
+  retries: 5
+
+- name: Enable k3s shutdown service
+  ansible.builtin.systemd:
+    name: shutdown-k3s
+    enabled: true
+  register: shutdown_k3s_service
+  until: shutdown_k3s_service is succeeded
   retries: 5
 
 - name: Get Kubernetes config file
