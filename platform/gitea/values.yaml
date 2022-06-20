@@ -18,6 +18,7 @@ gitea:
       - secretName: gitea-tls-certificate
         hosts:
           - *host
+
   gitea:
     admin:
       existingSecret: gitea-admin-secret
@@ -32,6 +33,10 @@ gitea:
         MAILER_TYPE: smtp
         HOST: "smtp.smtp:25"
         IS_TLS_ENABLED: "false"
+
+  service:
+    ssh:
+      type: LoadBalancer
 
   persistence:
     storageClass: zfs-default
