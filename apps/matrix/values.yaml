@@ -53,6 +53,9 @@ dendrite:
       registration:
         disabled: true
 
+    mediaapi:
+      dynamic_thumbnails: true
+
   persistence:
     storageClass: zfs-default
     logs:
