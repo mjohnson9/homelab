@@ -28,7 +28,7 @@ gitea:
 
       mailer:
         ENABLED: "true"
-        FROM: "git@johnson.computer"
+        FROM: "Gitea <git@johnson.computer>"
         MAILER_TYPE: smtp
         HOST: "smtp.smtp:25"
         IS_TLS_ENABLED: "false"
