@@ -75,6 +75,8 @@ dendrite:
       cert-manager.io/cluster-issuer: letsencrypt-prod
       nginx.ingress.kubernetes.io/proxy-body-size: 32m
       hajimari.io/enable: "false"
+      external-dns.alpha.kubernetes.io/target: null
+      external-dns.alpha.kubernetes.io/cloudflare-proxied: null
     hosts:
       - host: *backend_host
         paths:
