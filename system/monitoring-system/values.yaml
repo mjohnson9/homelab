@@ -24,30 +24,23 @@ kube-prometheus-stack:
 
       inhibit_rules:
         # if an alert downgrades in severity, inhibit a new notification
-        - source_matchers:
+        - source_match:
             severity: critical
-          target_matchers:
-            severity: warning
+          target_match_re:
+            severity: "warning|info"
           equal:
             - namespace
             - alertname
-        - source_matchers:
-            severity: critical
-          target_matchers:
+        - source_match:
+            severity: warning
+          target_match:
             severity: info
           equal:
             - namespace
             - alertname
-        - source_matchers:
-            severity: warning
-          target_matchers:
-            severity: info
-          equal:
-            - namespace
-            - alertname
-        - source_matchers:
+        - source_match:
             alertname: InfoInhibitor
-          target_matchers:
+          target_match:
             severity: info
           equal:
             - namespace
