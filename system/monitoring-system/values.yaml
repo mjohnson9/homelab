@@ -136,10 +136,22 @@ kube-prometheus-stack:
   kubeControllerManager:
     endpoints:
       - 10.0.2.10
+    service:
+      port: 10257
+      targetPort: 10257
+    serviceMonitor:
+      https: true
+      insecureSkipVerify: true
 
   kubeScheduler:
     endpoints:
       - 10.0.2.10
+    service:
+      port: 10259
+      targetPort: 10259
+    serviceMonitor:
+      https: true
+      insecureSkipVerify: true
 
   kubeProxy:
     endpoints:
