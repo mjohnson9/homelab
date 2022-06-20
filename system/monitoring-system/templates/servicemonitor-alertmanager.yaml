@@ -13,5 +13,5 @@ spec:
     matchNames:
       - {{ .Release.Namespace }}
   endpoints:
-  - port: 9093
+  - port: '9093'
     path: /metrics
