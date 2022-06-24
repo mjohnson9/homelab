@@ -1,0 +1,11 @@
+postgresql:
+  global:
+    storageClass: "zfs-postgresql"
+
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enable: true
+
+    prometheusRule:
+      enabled: true
