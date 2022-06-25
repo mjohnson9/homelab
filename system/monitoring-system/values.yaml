@@ -150,17 +150,17 @@ kube-prometheus-stack:
             - record: instance:node_network_transmit_bytes_physical:rate5m
               expr: |-
                 sum without (device) (
-                  rate(node_network_receive_bytes_total{job="node-exporter", device=~"(en(o|s)\\d+|enp\\d+s\\d+|eth\\d+|enx[0-9a-fA-F]+)"}[5m])
+                  rate(node_network_transmit_bytes_total{job="node-exporter", device=~"(en(o|s)\\d+|enp\\d+s\\d+|eth\\d+|enx[0-9a-fA-F]+)"}[5m])
                 )
             - record: instance:node_network_receive_drop_physical:rate5m
               expr: |-
                 sum without (device) (
-                  rate(node_network_receive_bytes_total{job="node-exporter", device=~"(en(o|s)\\d+|enp\\d+s\\d+|eth\\d+|enx[0-9a-fA-F]+)"}[5m])
+                  rate(node_network_receive_drop_total{job="node-exporter", device=~"(en(o|s)\\d+|enp\\d+s\\d+|eth\\d+|enx[0-9a-fA-F]+)"}[5m])
                 )
             - record: instance:node_network_transmit_drop_physical:rate5m
               expr: |-
                 sum without (device) (
-                  rate(node_network_receive_bytes_total{job="node-exporter", device=~"(en(o|s)\\d+|enp\\d+s\\d+|eth\\d+|enx[0-9a-fA-F]+)"}[5m])
+                  rate(node_network_transmit_drop_total{job="node-exporter", device=~"(en(o|s)\\d+|enp\\d+s\\d+|eth\\d+|enx[0-9a-fA-F]+)"}[5m])
                 )
 
   prometheus:
