@@ -126,6 +126,23 @@ kube-prometheus-stack:
     deploymentStrategy:
       type: Recreate
 
+  additionalPrometheusRulesMap:
+    custom-node-exporter:
+      groups:
+        - name: custom-node-exporter
+          rules:
+            - record: instance:node_memory_utilisation_custom:ratio
+              expr: |-
+                1 - (
+                  (
+                    node_memory_MemAvailable_bytes{job="node-exporter"}
+                  +
+                    node_zfs_arc_size{job="node-exporter"}
+                  )
+                /
+                  node_memory_MemTotal_bytes{job="node-exporter"}
+                )
+
   prometheus:
     prometheusSpec:
       scrapeInterval: 10s
