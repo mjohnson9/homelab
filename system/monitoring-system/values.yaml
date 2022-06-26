@@ -189,6 +189,8 @@ kube-prometheus-stack:
       podMonitorSelectorNilUsesHelmValues: false
       probeSelectorNilUsesHelmValues: false
 
+      replicas: 3
+
       retention: 365d
 
       externalUrl: "https://prometheus.johnson.computer"
