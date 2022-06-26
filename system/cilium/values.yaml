@@ -43,7 +43,7 @@ cilium:
         hosts:
           - &hubble_host hubble.johnson.computer
         tls:
-          - secretName: gitea-tls-certificate
+          - secretName: hubble-tls-certificate
             hosts:
               - *hubble_host
     relay:
