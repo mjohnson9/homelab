@@ -16,3 +16,7 @@ kube-proxy-arg:
 - metrics-bind-address={{ hostvars[inventory_hostname].ansible_host }}
 kube-scheduler-arg:
 - bind-address={{ hostvars[inventory_hostname].ansible_host }}
+
+# disable k3s built-in networking for Cilium
+flannel-backend: none
+disable-network-policy: true

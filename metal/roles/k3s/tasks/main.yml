@@ -15,6 +15,13 @@
     - name: vm.max_map_count
       value: 262144
 
+- name: Mount bpffs
+  ansible.posix.mount:
+    path: /sys/fs/bpf
+    src: bpffs
+    fstype: bpf
+    state: present
+
 - name: Download k3s binary
   ansible.builtin.get_url:
     url: https://github.com/k3s-io/k3s/releases/download/{{ k3s_version }}/k3s

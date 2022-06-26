@@ -11,4 +11,3 @@ k3s_server_config:
   disable-cloud-controller: true
   secrets-encryption: true
   snapshotter: native
-  flannel-iface: servers

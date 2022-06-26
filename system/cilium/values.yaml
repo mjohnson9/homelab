@@ -1,0 +1,31 @@
+cilium:
+  cluster:
+    name: home
+    id: 1
+
+  rollOutCiliumPods: true
+  autoDirectNodeRoutes: true
+
+  containerRuntime:
+    integration: containerd
+
+  externalIPs:
+    enabled: true
+
+  prometheus:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+
+  ipam:
+    operator:
+      clusterPoolIPv4PodCIDRList: ["10.72.0.0/16"]
+      clusterPoolIPv4MaskSize: 20
+
+  operator:
+    rollOutPods: true
+
+  bgp:
+    enabled: true
+    announce:
+      loadbalancerIP: true
