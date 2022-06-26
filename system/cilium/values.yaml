@@ -44,6 +44,8 @@ cilium:
           - secretName: gitea-tls-certificate
             hosts:
               - *hubble_host
+    relay:
+      enabled: true
 
   operator:
     rollOutPods: true
