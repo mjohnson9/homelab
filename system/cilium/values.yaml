@@ -5,8 +5,9 @@ cilium:
 
   rollOutCiliumPods: true
 
-  autoDirectNodeRoutes: true
   tunnel: disabled
+  autoDirectNodeRoutes: true
+  ipv4NativeRoutingCIDR: "10.72.0.0/16"
 
   containerRuntime:
     integration: containerd
