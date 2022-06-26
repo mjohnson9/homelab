@@ -3,6 +3,8 @@ kube-prometheus-stack:
     alertmanagerSpec:
       replicas: 3
 
+      externalUrl: "https://alertmanager.johnson.computer"
+
       storage:
         volumeClaimTemplate:
           spec:
@@ -186,6 +188,8 @@ kube-prometheus-stack:
       serviceMonitorSelectorNilUsesHelmValues: false
       podMonitorSelectorNilUsesHelmValues: false
       probeSelectorNilUsesHelmValues: false
+
+      externalUrl: "https://prometheus.johnson.computer"
 
     ingress:
       enabled: true
