@@ -21,12 +21,12 @@ elementweb:
   config:
     default:
       base_url: https://matrix.johnson.gg
-      server_name: *server_name
+      server_name: &server_name johnson.gg
 
 dendrite:
   dendrite:
     global:
-      server_name: &server_name johnson.gg
+      server_name: *server_name
       well_known_server_name: *host
 
       presence:
@@ -84,50 +84,3 @@ dendrite:
 
   nats:
     enabled: true
-
-  # components:
-  #   clientapi:
-  #     registration:
-  #       disabled: true
-
-  #   mediaapi:
-  #     dynamic_thumbnails: true
-
-  # nats:
-  #   enabled: true
-  #   nats:
-  #     jetstream:
-  #       enabled: true
-
-  # postgresql:
-  #   enabled: false
-  #   global:
-  #     postgresql:
-  #       postgresqlDatabase: dendrite
-  #       postgresqlUsername: dendrite
-  #       postgresqlPassword: dendrite
-  #   persistence:
-  #     enabled: true
-  #     storageClass: zfs-postgresql
-  #     accessModes:
-  #       - ReadWriteOnce
-  #     size: 5Gi
-
-  # ingress:
-  #   enabled: true
-  #   className: nginx
-  #   annotations:
-  #     cert-manager.io/cluster-issuer: letsencrypt-prod
-  #     nginx.ingress.kubernetes.io/proxy-body-size: 1g
-  #     hajimari.io/enable: "false"
-  #     external-dns.alpha.kubernetes.io/target: ""
-  #     external-dns.alpha.kubernetes.io/cloudflare-proxied: ""
-  #   hosts:
-  #     - host: *host
-  #       paths:
-  #         - path: /_matrix
-  #           pathType: Prefix
-  #   tls:
-  #     - secretName: dendrite-tls-certificate
-  #       hosts:
-  #         - *host
