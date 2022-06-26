@@ -25,6 +25,26 @@ cilium:
       clusterPoolIPv4PodCIDRList: ["10.72.0.0/16"]
       clusterPoolIPv4MaskSize: 20
 
+  hubble:
+    ui:
+      enabled: true
+
+      ingress:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+          hajimari.io/appName: Hubble
+          hajimari.io/icon: telescope
+
+          # only allow internal clients
+          nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8
+        hosts:
+          - &hubble_host hubble.johnson.computer
+        tls:
+          - secretName: gitea-tls-certificate
+            hosts:
+              - *hubble_host
+
   operator:
     rollOutPods: true
 
