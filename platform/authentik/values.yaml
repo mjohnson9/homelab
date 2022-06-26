@@ -23,7 +23,7 @@ authentik:
     email:
       host: smtp.smtp
       port: 25
-      from: "Authentik <authentik@johnson.computer>"
+      from: "authentik@johnson.computer"
 
     postgresql:
       host: postgresql.postgresql
