@@ -3,8 +3,12 @@ ingress-nginx:
     service:
       externalTrafficPolicy: "Local"
 
+    ingressClassResource:
+      default: true
+
     admissionWebhooks:
       timeoutSeconds: 30
+
     metrics:
       enabled: true
       serviceMonitor:
