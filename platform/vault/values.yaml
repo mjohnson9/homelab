@@ -11,7 +11,7 @@ vault:
         cert-manager.io/cluster-issuer: letsencrypt-prod
 
         # only allow internal clients
-        nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8
+        nginx.ingress.kubernetes.io/whitelist-source-range: 108.211.229.1/32
       hosts:
         - host: &host vault.johnson.computer
       tls:

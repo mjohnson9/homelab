@@ -90,7 +90,7 @@ kube-prometheus-stack:
         hajimari.io/icon: chart-bar
 
         # only allow internal clients
-        nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8
+        nginx.ingress.kubernetes.io/whitelist-source-range: 108.211.229.1/32
       hosts:
         - &host grafana.johnson.computer
       tls:

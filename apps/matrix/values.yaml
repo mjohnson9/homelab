@@ -8,7 +8,7 @@ elementweb:
       hajimari.io/icon: chat
 
       # only allow internal clients
-      nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8
+      nginx.ingress.kubernetes.io/whitelist-source-range: 108.211.229.1/32
     hosts:
       - host: &frontend_host matrix.johnson.gg
         paths:
