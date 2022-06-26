@@ -25,6 +25,11 @@ cilium:
   operator:
     rollOutPods: true
 
+    # because we only have 1 node, allow operator pods to be on the same node
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution: []
+
   bgp:
     enabled: false
     announce:
