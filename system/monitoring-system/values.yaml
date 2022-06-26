@@ -139,6 +139,9 @@ kube-prometheus-stack:
         auth_url: https://dex.johnson.computer/auth
         token_url: https://dex.johnson.computer/token
         api_url: https://dex.johnson.computer/userinfo
+      analytics:
+        reporting_enabled: false
+        check_for_updates: false
     persistence:
       enabled: true
     # this deployment strategy is necessary because of persistence
