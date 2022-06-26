@@ -54,7 +54,7 @@ dendrite:
       hosts:
         - host: *host
           paths:
-            - path: /
+            - path: /_matrix
               pathType: Prefix
       tls:
         - secretName: matrix-tls-certificate
