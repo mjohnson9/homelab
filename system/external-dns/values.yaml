@@ -15,7 +15,7 @@ external-dns:
     - --annotation-filter=external-dns.alpha.kubernetes.io/exclude notin (true)
 
   # fix CNAME records
-  txtPrefix: "_k8s-meta."
+  txtPrefix: "_k8s-meta-"
 
   metrics:
     enabled: true
