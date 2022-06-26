@@ -196,7 +196,7 @@ kube-prometheus-stack:
           scrape_interval: 1m
           scrape_timeout: 30s
           scheme: https
-          static_config:
+          static_configs:
             - targets:
                 - gateway.home.johnson.computer
 
