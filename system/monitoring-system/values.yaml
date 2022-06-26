@@ -191,6 +191,15 @@ kube-prometheus-stack:
 
       externalUrl: "https://prometheus.johnson.computer"
 
+      additionalScrapeConfigs:
+        - job_name: gateway
+          scrape_interval: 1m
+          scrape_timeout: 30s
+          scheme: https
+          static_config:
+            - targets:
+                - gateway.home.johnson.computer
+
     ingress:
       enabled: true
       ingressClassName: nginx
