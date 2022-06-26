@@ -26,10 +26,10 @@ paperless:
     enabled: true
     persistence:
       enabled: true
-      storageClass: zfs-postgresql
+      storageClass: do-block-storage
   redis:
     enabled: true
     architecture: standalone
     persistence:
       enabled: true
-      storageClass: zfs-postgresql
+      storageClass: do-block-storage

@@ -78,7 +78,7 @@ dendrite:
         postgresqlPassword: dendrite
     persistence:
       enabled: true
-      storageClass: zfs-postgresql
+      storageClass: do-block-storage
       accessModes:
         - ReadWriteOnce
       size: 5Gi

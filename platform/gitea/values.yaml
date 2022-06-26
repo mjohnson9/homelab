@@ -43,4 +43,4 @@ gitea:
     storageClass: zfs-default
   postgresql:
     persistence:
-      storageClass: zfs-postgresql
+      storageClass: do-block-storage

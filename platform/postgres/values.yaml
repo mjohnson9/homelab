@@ -1,6 +1,6 @@
 postgresql:
   global:
-    storageClass: "zfs-postgresql"
+    storageClass: "do-block-storage"
 
   metrics:
     enabled: true
