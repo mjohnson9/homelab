@@ -38,6 +38,7 @@ gitea:
     ssh:
       type: LoadBalancer
       externalTrafficPolicy: Local
+      loadBalancerIP: 138.197.49.96
 
   persistence:
     storageClass: zfs-default
