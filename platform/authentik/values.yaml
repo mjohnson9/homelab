@@ -1,0 +1,37 @@
+authentik:
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      hajimari.io/appName: Authentik
+      hajimari.io/icon: shield-account
+
+      # only allow internal clients
+      nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8
+    hosts:
+      - host: &host login.johnson.computer
+    tls:
+      - secretName: authentik-tls-certificate
+        hosts:
+          - *host
+
+  authentik:
+    email:
+      host: smtp.smtp
+      port: 25
+      from: "Authentik <authentik@johnson.computer>"
+
+  envFrom:
+    - secretRef:
+        name: authentik-secret-env
+      prefix: "AUTHENTIK_"
+
+  prometheus:
+    serviceMonitor:
+      create: true
+    rules:
+      create: true
+
+  redis:
+    enabled: true
