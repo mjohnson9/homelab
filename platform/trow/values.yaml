@@ -31,4 +31,4 @@ trow:
         hosts:
           - *host
   volumeClaim:
-    storageClassName: zfs-default
+    storageClassName: do-block-storage

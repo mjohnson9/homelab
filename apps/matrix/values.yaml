@@ -57,7 +57,7 @@ dendrite:
       dynamic_thumbnails: true
 
   persistence:
-    storageClass: zfs-default
+    storageClass: do-block-storage
     logs:
       capacity: 1Gi
     media:

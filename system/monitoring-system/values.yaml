@@ -6,7 +6,7 @@ kube-prometheus-stack:
       storage:
         volumeClaimTemplate:
           spec:
-            storageClassName: zfs-default
+            storageClassName: do-block-storage
             resources:
               requests:
                 storage: 1Gi

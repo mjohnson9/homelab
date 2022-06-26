@@ -41,7 +41,7 @@ gitea:
       loadBalancerIP: 138.197.49.96
 
   persistence:
-    storageClass: zfs-default
+    storageClass: do-block-storage
   postgresql:
     persistence:
       storageClass: do-block-storage
