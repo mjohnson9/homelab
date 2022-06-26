@@ -25,6 +25,9 @@ authentik:
       port: 25
       from: "Authentik <authentik@johnson.computer>"
 
+    postgresql:
+      host: postgresql.postgresql
+
   envFrom:
     - secretRef:
         name: authentik-secret-env
