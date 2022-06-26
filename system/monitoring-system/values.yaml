@@ -204,6 +204,14 @@ kube-prometheus-stack:
             - targets:
                 - gateway.home.johnson.computer
 
+      storageSpec:
+        volumeClaimTemplate:
+          spec:
+            accessModes: ["ReadWriteOnce"]
+            resources:
+              requests:
+                storage: 64Gi
+
     ingress:
       enabled: true
       ingressClassName: nginx
