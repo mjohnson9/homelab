@@ -79,6 +79,23 @@ kube-prometheus-stack:
               html: ""
         - name: "null"
 
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        hajimari.io/appName: Alertmanager
+        hajimari.io/icon: alert
+
+        # only allow internal clients
+        nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8
+      hosts:
+        - &alertmanager_host alertmanager.johnson.computer
+      tls:
+        - secretName: alertmanager-general-tls
+          hosts:
+            - *alertmanager_host
+
   grafana:
     adminPassword: null
     ingress:
@@ -169,6 +186,23 @@ kube-prometheus-stack:
       serviceMonitorSelectorNilUsesHelmValues: false
       podMonitorSelectorNilUsesHelmValues: false
       probeSelectorNilUsesHelmValues: false
+
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        hajimari.io/appName: Prometheus
+        hajimari.io/icon: database
+
+        # only allow internal clients
+        nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8
+      hosts:
+        - &prometheus_host prometheus.johnson.computer
+      tls:
+        - secretName: prometheus-general-tls
+          hosts:
+            - *prometheus_host
 
   kubeControllerManager:
     endpoints:
