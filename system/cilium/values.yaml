@@ -4,7 +4,9 @@ cilium:
     id: 1
 
   rollOutCiliumPods: true
+
   autoDirectNodeRoutes: true
+  tunnel: disabled
 
   containerRuntime:
     integration: containerd
