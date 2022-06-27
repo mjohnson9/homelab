@@ -55,9 +55,7 @@ dendrite:
       enabled: true
 
   postgresql:
-    fullnameOverride: "matrix-dendrite-postgresql"
-
-    enabled: true
-    persistence:
-      enabled: true
-      storageClass: zfs-postgresql
+    enabled: false
+    auth:
+      username: dendrite
+      password: cae5joov3Egh5tohwo4sunahyefe0foo5Hiengiey7rik0thaeNg3eihi0zoopoo
