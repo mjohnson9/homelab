@@ -20,7 +20,7 @@ elementweb:
           - *host
   config:
     default:
-      base_url: https://matrix.johnson.gg
+      base_url: https://johnson.gg
       server_name: &server_name johnson.gg
 
 dendrite:
