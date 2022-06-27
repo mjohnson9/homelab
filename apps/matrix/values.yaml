@@ -42,7 +42,7 @@ dendrite:
       existingSecret: homeserver-keys
 
     tls_secret:
-      existingSecret: matrix-tls-certificate
+      existingSecret: apex-tls-certificate
 
   ingress:
     main:
@@ -55,18 +55,13 @@ dendrite:
         # only allow internal clients
         nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8
       hosts:
-        - host: *host
+        - host: *server_name
           paths:
             - path: /_matrix/
               pathType: Prefix
-        - host: *server_name
-          paths:
-            - path: /.well-known/matrix/server
-              pathType: Exact
+            - path: /.well-known/matrix/
+              pathType: Prefix
       tls:
-        - secretName: matrix-tls-certificate
-          hosts:
-            - *host
         - secretName: apex-tls-certificate
           hosts:
             - *server_name
