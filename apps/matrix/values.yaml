@@ -80,7 +80,7 @@ dendrite:
       enabled: true
 
   postgresql:
-    fullnameOverride: "matrix-dendrite"
+    fullnameOverride: "matrix-dendrite-postgresql"
 
     enabled: true
     persistence:
