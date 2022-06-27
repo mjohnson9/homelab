@@ -93,4 +93,4 @@ dendrite:
 
   nats:
     enabled: true
-    nameOverride: matrix-dendrite-nats
+    nameOverride: dendrite-nats
