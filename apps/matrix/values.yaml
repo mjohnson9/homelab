@@ -1,34 +1,9 @@
-elementweb:
-  ingress:
-    enabled: true
-    className: nginx
-    annotations:
-      cert-manager.io/cluster-issuer: letsencrypt-prod
-      hajimari.io/appName: Chat
-      hajimari.io/icon: chat
-
-      # only allow internal clients
-      nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8
-    hosts:
-      - host: &host chat.johnson.gg
-        paths:
-          - path: /
-            pathType: Prefix
-    tls:
-      - secretName: element-tls-certificate
-        hosts:
-          - *host
-  config:
-    default:
-      base_url: https://johnson.gg
-      server_name: &server_name johnson.gg
-
 dendrite:
   dendrite:
     polylithEnabled: true
 
     global:
-      server_name: *server_name
+      server_name: &server_name johnson.gg
       well_known_server_name: *server_name
 
       presence:
@@ -48,58 +23,114 @@ dendrite:
 
   ingress:
     main:
-      primary: true
-      enabled: true
-      ingressClassName: nginx
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-prod
-        hajimari.io/enable: "false"
-        nginx.ingress.kubernetes.io/use-regex: "true"
+      enabled: false
 
-        # only allow internal clients
-        nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8
-      hosts:
-        - host: *server_name
-          paths:
-            - path: /_matrix/client/.*?/(sync|user/.*?/filter/?.*|keys/changes|rooms/.*?/messages)$
-              pathType: Prefix
-              service:
-                name: matrix-syncapi
-                port: 8073
-            - path: /_matrix/client
-              pathType: Prefix
-              service:
-                name: matrix-clientapi
-                port: 8071
-            - path: /_matrix/federation
-              pathType: Prefix
-              service:
-                name: matrix-federationapi
-                port: 8072
-            - path: /_matrix/key
-              pathType: Prefix
-              service:
-                name: matrix-federationapi
-                port: 8072
-            - path: /_matrix/media
-              pathType: Prefix
-              service:
-                name: matrix-mediaapi
-                port: 8074
-            # - path: /.well-known/matrix/
-            #   pathType: Prefix
-      tls:
-        - secretName: apex-tls-certificate
-          hosts:
-            - *server_name
+  clientapi:
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: nginx
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+          hajimari.io/enable: "false"
+
+          # only allow internal clients
+          nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8
+        hosts:
+          - host: *server_name
+            paths:
+              - path: /_matrix/client
+                pathType: Prefix
+                service:
+                  name: matrix-clientapi
+                  port: "8071"
+        tls:
+          - secretName: apex-tls-certificate
+            hosts:
+              - *server_name
 
   federationapi:
     config:
       prefer_direct_fetch: true
 
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: nginx
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+          hajimari.io/enable: "false"
+
+          # only allow internal clients
+          nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8
+        hosts:
+          - host: *server_name
+            paths:
+              - path: /_matrix/federation
+                pathType: Prefix
+                service:
+                  name: matrix-federationapi
+                  port: "8072"
+              - path: /_matrix/key
+                pathType: Prefix
+                service:
+                  name: matrix-federationapi
+                  port: "8072"
+        tls:
+          - secretName: apex-tls-certificate
+            hosts:
+              - *server_name
+
   mediaapi:
     config:
       dynamic_thumbnails: true
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: nginx
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+          hajimari.io/enable: "false"
+
+          # only allow internal clients
+          nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8
+        hosts:
+          - host: *server_name
+            paths:
+              - path: /_matrix/media
+                pathType: Prefix
+                service:
+                  name: matrix-mediaapi
+                  port: "8074"
+        tls:
+          - secretName: apex-tls-certificate
+            hosts:
+              - *server_name
+
+  syncapi:
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: nginx
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+          hajimari.io/enable: "false"
+          nginx.ingress.kubernetes.io/use-regex: "true"
+
+          # only allow internal clients
+          nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8
+        hosts:
+          - host: *server_name
+            paths:
+              - path: "/_matrix/client/.*?/(sync|user/.*?/filter/?.*|keys/changes|rooms/.*?/messages)$"
+                pathType: Prefix
+                service:
+                  name: matrix-syncapi
+        tls:
+          - secretName: apex-tls-certificate
+            hosts:
+              - *server_name
 
   persistence:
     media:

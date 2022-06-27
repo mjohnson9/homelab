@@ -1,10 +1,7 @@
 apiVersion: v2
-name: elementweb
+name: matrix
 version: 0.0.0
 dependencies:
-  - name: elementweb
-    version: 0.0.3
-    repository: https://locmai.github.io/charts # TODO switch to official chart
   - name: dendrite
     version: 5.0.0
-    repository: https://k8s-at-home.com/charts/ # TODO switch to official chart
+    repository: https://k8s-at-home.com/charts/
