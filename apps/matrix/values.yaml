@@ -38,6 +38,9 @@ dendrite:
 
       disable_federation: true
 
+    matrix_key_secret:
+      existingSecret: homeserver-keys
+
     tls_secret:
       existingSecret: matrix-tls-certificate
 
