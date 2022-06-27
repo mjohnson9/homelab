@@ -10,12 +10,12 @@ elementweb:
       # only allow internal clients
       nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8
     hosts:
-      - host: &host matrix.johnson.gg
+      - host: &host chat.johnson.gg
         paths:
           - path: /
             pathType: Prefix
     tls:
-      - secretName: matrix-tls-certificate
+      - secretName: element-tls-certificate
         hosts:
           - *host
   config:
@@ -27,7 +27,7 @@ dendrite:
   dendrite:
     global:
       server_name: *server_name
-      well_known_server_name: *host
+      well_known_server_name: *server_name
 
       presence:
         enable_inbound: true
