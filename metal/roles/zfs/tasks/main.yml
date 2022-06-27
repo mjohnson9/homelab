@@ -65,15 +65,26 @@
   changed_when: "result.rc == 0"
   failed_when: 'result.rc != 0 and "a pool with that name already exists" not in result.stderr'
 
+- name: Copy key loading service to nodes
+  ansible.builtin.copy:
+    src: zfs-load-keys.service
+    dest: "/etc/systemd/system/zfs-load-keys.service"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Enable and run key loading service
+  ansible.builtin.systemd:
+    name: zfs-load-keys
+    enabled: true
+    state: started
+  register: zfs_keys_service
+  until: zfs_keys_service is succeeded
+  retries: 5
+
 - name: Cache ZFS pool
   ansible.builtin.command: /usr/sbin/zpool set cachefile=/etc/zfs/zpool.cache tank
   changed_when: False
-
-- name: Unlock ZFS pool
-  ansible.builtin.command: /usr/sbin/zfs load-key -r tank
-  register: result
-  changed_when: '"successfully loaded" in result.stdout'
-  failed_when: '"Key load error" in result.stderr'
 
 - name: Mount ZFS volumes
   ansible.builtin.command: /usr/sbin/zfs mount -a
