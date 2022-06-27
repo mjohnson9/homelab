@@ -34,6 +34,8 @@ dendrite:
           paths:
             - path: /_matrix
               pathType: Prefix
+            - path: /.well-known/matrix/server
+              pathType: Exact
       tls:
         - secretName: apex-tls-certificate
           hosts:
