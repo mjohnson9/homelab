@@ -25,6 +25,8 @@ elementweb:
 
 dendrite:
   dendrite:
+    polylithEnabled: true
+
     global:
       server_name: *server_name
       well_known_server_name: *server_name
