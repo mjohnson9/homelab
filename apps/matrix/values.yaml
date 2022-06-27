@@ -26,8 +26,8 @@ elementweb:
 dendrite:
   dendrite:
     global:
-      server_name: *host
-      well_known_server_name: *server_name
+      server_name: *server_name
+      well_known_server_name: *host
 
       presence:
         enable_inbound: true
