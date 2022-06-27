@@ -57,12 +57,19 @@ dendrite:
       hosts:
         - host: *host
           paths:
-            - path: /_matrix
+            - path: /_matrix/
               pathType: Prefix
+        - host: *server_name
+          paths:
+            - path: /.well-known/matrix/server
+              pathType: Exact
       tls:
         - secretName: matrix-tls-certificate
           hosts:
             - *host
+        - secretName: apex-tls-certificate
+          hosts:
+            - *server_name
 
   federationapi:
     config:
