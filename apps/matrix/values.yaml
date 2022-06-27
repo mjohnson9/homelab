@@ -53,16 +53,40 @@ dendrite:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         hajimari.io/enable: "false"
+        nginx.ingress.kubernetes.io/use-regex: "true"
 
         # only allow internal clients
         nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8
       hosts:
         - host: *server_name
           paths:
-            - path: /_matrix/
+            - path: /_matrix/client/.*?/(sync|user/.*?/filter/?.*|keys/changes|rooms/.*?/messages)$
               pathType: Prefix
-            - path: /.well-known/matrix/
+              service:
+                name: matrix-syncapi
+                port: 8073
+            - path: /_matrix/client
               pathType: Prefix
+              service:
+                name: matrix-clientapi
+                port: 8071
+            - path: /_matrix/federation
+              pathType: Prefix
+              service:
+                name: matrix-federationapi
+                port: 8072
+            - path: /_matrix/key
+              pathType: Prefix
+              service:
+                name: matrix-federationapi
+                port: 8072
+            - path: /_matrix/media
+              pathType: Prefix
+              service:
+                name: matrix-mediaapi
+                port: 8074
+            # - path: /.well-known/matrix/
+            #   pathType: Prefix
       tls:
         - secretName: apex-tls-certificate
           hosts:
