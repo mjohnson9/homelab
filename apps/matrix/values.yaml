@@ -86,6 +86,3 @@ dendrite:
     persistence:
       enabled: true
       storageClass: zfs-postgresql
-
-  nats:
-    enabled: true
