@@ -41,9 +41,6 @@ dendrite:
             paths:
               - path: /_matrix/client
                 pathType: Prefix
-                service:
-                  name: matrix-clientapi
-                  port: "8071"
         tls:
           - secretName: apex-tls-certificate
             hosts:
@@ -68,14 +65,8 @@ dendrite:
             paths:
               - path: /_matrix/federation
                 pathType: Prefix
-                service:
-                  name: matrix-federationapi
-                  port: "8072"
               - path: /_matrix/key
                 pathType: Prefix
-                service:
-                  name: matrix-federationapi
-                  port: "8072"
         tls:
           - secretName: apex-tls-certificate
             hosts:
@@ -100,9 +91,6 @@ dendrite:
             paths:
               - path: /_matrix/media
                 pathType: Prefix
-                service:
-                  name: matrix-mediaapi
-                  port: "8074"
         tls:
           - secretName: apex-tls-certificate
             hosts:
@@ -125,8 +113,6 @@ dendrite:
             paths:
               - path: "/_matrix/client/.*?/(sync|user/.*?/filter/?.*|keys/changes|rooms/.*?/messages)$"
                 pathType: Prefix
-                service:
-                  name: matrix-syncapi
         tls:
           - secretName: apex-tls-certificate
             hosts:
