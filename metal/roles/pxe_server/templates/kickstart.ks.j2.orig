@@ -12,9 +12,15 @@ lang en_US.UTF-8
 clearpart --all --drives={{ hostvars[item]['disk'] }}
 # Partitioning
 ignoredisk --only-use={{ hostvars[item]['disk'] }}
-reqpart
+<<<<<<< HEAD
+partition /boot --fstype=ext4 --size=1024
 partition / --fstype=ext4 --encrypted --size=65536 --maxsize=131072 --grow --fsoptions=discard --passphrase=temppass
 partition swap --recommended --encrypted --fsoptions=discard --passphrase=temppass
+=======
+reqpart
+partition / --fstype=ext4 --encrypted --size=65536 --maxsize=131072 --grow --fsoptions=discard
+partition swap --recommended --encrypted
+>>>>>>> f77d76c (Update 'metal/roles/pxe_server/templates/kickstart.ks.j2')
 
 # Configure management network
 # TODO: Remove; these hosts shouldn't be on the management network on non-IPMI interfaces
