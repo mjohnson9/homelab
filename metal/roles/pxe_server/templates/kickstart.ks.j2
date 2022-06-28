@@ -74,4 +74,8 @@ printf "luks-%s /dev/disk/by-partuuid/%s swap,cipher=aes-cbc-essiv:sha256,size=2
 dracut -fv --regenerate-all
 %end
 
+%post
+echo "bpffs    /sys/fs/bpf    bpf    defaults    0 0" >>/etc/fstab
+%end
+
 reboot
