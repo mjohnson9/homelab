@@ -12,7 +12,7 @@ spec:
     michael-admin:  # database owner
     - superuser
     - createdb
-    synapse: []
+    matrix.synapse: []
   databases:
     synapse: matrix.synapse
   postgresql:
