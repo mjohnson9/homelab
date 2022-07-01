@@ -24,8 +24,6 @@ cilium:
   externalIPs:
     enabled: true
 
-  bandwidthManager: true
-
   prometheus:
     enabled: true
     serviceMonitor:
