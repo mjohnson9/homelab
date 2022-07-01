@@ -2,6 +2,6 @@ apiVersion: v2
 name: postgres
 version: 0.0.0
 dependencies:
-  - name: postgresql
-    version: 11.6.10
+  - name: postgres-operator
+    version: 1.8.2
     repository: https://charts.bitnami.com/bitnami

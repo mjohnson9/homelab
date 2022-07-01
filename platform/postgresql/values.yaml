@@ -1,15 +1,3 @@
-postgresql:
-  global:
-    storageClass: "zfs-postgresql"
-
-    postgresql:
-      auth:
-        database: temp
-
-  metrics:
-    enabled: true
-    serviceMonitor:
-      enable: true
-
-    prometheusRule:
-      enabled: true
+postgres-operator:
+  configKubernetes:
+    enable_cross_namespace_secret: true
