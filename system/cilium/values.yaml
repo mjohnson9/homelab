@@ -5,6 +5,10 @@ cilium:
 
   rollOutCiliumPods: true
 
+  # enable fair queueing
+  bandwidthManager: true
+  kubeProxyReplacement: strict
+
   # disable conntrack rules for performance
   # installNoConntrackIptablesRules: true
   tunnel: disabled
