@@ -48,13 +48,18 @@ synapse:
       m.homeserver:
         base_url: "https://matrix.johnson.gg"
 
-  postgresql:
-    enabled: true
-    persistence:
-      enabled: false
+  externalPostgresql:
+    host: "shared-cluster.postgresql"
+    database: synapse
+    username: synapse
+    existingSecret: "matrix.synapse.shared-cluster.credentials.postgresql.acid.zalan.do"
+    existingSecretPasswordKey: password
 
   persistence:
-    enabled: false
+    enabled: true
+
+    accessMode: ReadWriteMany
+    size: 64Gi
 
   ingress:
     enabled: true
@@ -76,3 +81,6 @@ synapse:
         hosts:
           - matrix.johnson.gg
           - johnson.gg
+
+  postgresql:
+    enabled: false
