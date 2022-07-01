@@ -11,10 +11,16 @@ cilium:
   autoDirectNodeRoutes: true
   ipv4NativeRoutingCIDR: "10.72.0.0/16"
 
+  bpf:
+    masquerade: true
+
   containerRuntime:
     integration: containerd
 
   externalIPs:
+    enabled: true
+
+  bandwidthManager:
     enabled: true
 
   prometheus:
