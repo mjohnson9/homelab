@@ -19,6 +19,14 @@ synapse:
   extraConfig:
     dynamic_thumbnails: true
 
+    email:
+      smtp_host: "smtp.smtp"
+      enable_tls: false
+      notif_from: "%(app)s <matrix@johnson.gg>"
+      enable_notifs: true
+      client_base_url: "https://chat.johnson.gg"
+      invite_client_location: "https://app.element.io"
+
   synapse:
     extraVolumes:
       - name: extra-secret-config
