@@ -1,63 +1,62 @@
-dendrite:
-  dendrite:
-    global:
-      server_name: &server_name johnson.gg
-      well_known_server_name: *server_name
+# todo: macaroon secret key
 
-      presence:
-        enable_inbound: true
-        enable_outbound: true
+synapse:
+  signingKey:
+    job:
+      enabled: false
 
-      metrics:
-        enabled: true
+    existingSecret: homeserver-keys
+    existingSecretKey: signing-key
 
-      disable_federation: true
+  config:
+    publicBaseurl: "https://matrix.johnson.gg"
 
-    matrix_key_secret:
-      existingSecret: homeserver-keys
+    enableRegistration: false
 
-    tls_secret:
-      existingSecret: apex-tls-certificate
+  extraConfig:
+    dynamic_thumbnails: true
 
-  ingress:
-    main:
-      enabled: true
-      ingressClassName: nginx
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-prod
-        hajimari.io/enable: "false"
+  synapse:
+    extraVolumes:
+      - name: extra-secret-config
+        secret:
+          secretName: extra-secret-config
+    extraVolumeMounts:
+      - name: extra-secret-config
+        mountPath: /run/synapse-extra-secret-config
+    extraCommands:
+      - "cp -av /run/synapse-extra-secret-config/config.yaml /synapse/config/conf.d/extra-secret-config.yaml"
 
-        # only allow internal clients
-        nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8
-      hosts:
-        - host: *server_name
-          paths:
-            - path: /_matrix
-              pathType: Prefix
-            - path: /.well-known/matrix/server
-              pathType: Exact
-      tls:
-        - secretName: apex-tls-certificate
-          hosts:
-            - *server_name
+  wellknown:
+    enabled: true
 
-  federationapi:
-    config:
-      prefer_direct_fetch: true
+    server:
+      m.server: matrix.johnson.gg:443
 
-  mediaapi:
-    config:
-      dynamic_thumbnails: true
-
-  persistence:
-    media:
-      enabled: true
-      capacity: 64Gi
-    jetstream:
-      enabled: true
+    client:
+      m.homeserver:
+        base_url: "https://matrix.johnson.gg"
 
   postgresql:
+    enabled: true
+    persistence:
+      enabled: false
+
+  persistence:
     enabled: false
-    auth:
-      username: dendrite
-      password: cae5joov3Egh5tohwo4sunahyefe0foo5Hiengiey7rik0thaeNg3eihi0zoopoo
+
+  ingress:
+    enabled: true
+
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      hajimari.io/enable: "false"
+
+      # only allow internal clients
+      nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8
+
+    tls:
+      - secretName: matrix-tls-certificate
+        hosts:
+          - matrix.johnson.gg
+          - johnson.gg
