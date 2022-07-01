@@ -5,6 +5,10 @@ cilium:
 
   rollOutCiliumPods: true
 
+  # only use correct interface
+  devices: servers
+  egressMasqueradeInterfaces: servers
+
   # enable fair queueing
   bandwidthManager: true
   kubeProxyReplacement: strict
