@@ -4,7 +4,7 @@ synapse:
   serverName: "johnson.gg"
   publicServerName: "matrix.johnson.gg"
 
-  signingKey:
+  signingkey:
     job:
       enabled: false
 
