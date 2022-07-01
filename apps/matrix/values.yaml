@@ -55,6 +55,8 @@ synapse:
     existingSecret: "matrix.synapse.shared-cluster.credentials.postgresql.acid.zalan.do"
     existingSecretPasswordKey: password
 
+    sslmode: prefer
+
   persistence:
     enabled: true
 
