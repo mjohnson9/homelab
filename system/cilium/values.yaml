@@ -6,7 +6,7 @@ cilium:
   rollOutCiliumPods: true
 
   # disable conntrack rules for performance
-  install-no-conntrack-iptables-rules: true
+  installNoConntrackIptablesRules: true
   tunnel: disabled
   autoDirectNodeRoutes: true
   ipv4NativeRoutingCIDR: "10.72.0.0/16"
