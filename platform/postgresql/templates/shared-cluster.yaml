@@ -9,13 +9,11 @@ spec:
     storageClass: zfs-postgresql
   numberOfInstances: 2
   users:
-    zalando:  # database owner
+    michael-admin:  # database owner
     - superuser
     - createdb
-    foo_user: []  # role for application foo
+    synapse: []
   databases:
-    foo: zalando  # dbname: owner
-  preparedDatabases:
-    bar: {}
+    synapse: matrix.synapse
   postgresql:
     version: "14"
