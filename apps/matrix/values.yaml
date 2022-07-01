@@ -1,6 +1,9 @@
 # todo: macaroon secret key
 
 synapse:
+  serverName: "johnson.gg"
+  publicServerName: "matrix.johnson.gg"
+
   signingKey:
     job:
       enabled: false
@@ -47,6 +50,7 @@ synapse:
 
   ingress:
     enabled: true
+    includeServerName: false
 
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
@@ -54,6 +58,10 @@ synapse:
 
       # only allow internal clients
       nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8
+
+    wkHosts: ["johnson.gg"]
+    csHosts: ["matrix.johnson.gg"]
+    hosts: ["matrix.johnson.gg"]
 
     tls:
       - secretName: matrix-tls-certificate
