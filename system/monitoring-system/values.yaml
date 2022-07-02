@@ -162,6 +162,9 @@ kube-prometheus-stack:
     sidecars:
       - name: textfile-collectors
         image: n0rad/alpine-node-exporter-textfile-collector-scripts:20220701.091122-b8859a8a@sha256:1c1beea52249d2c6100d082582c7483264a9e565af3bfba69ca56194de74f55f
+        securityContext:
+          runAsNonRoot: false
+          runAsUser: 0
 
   additionalPrometheusRulesMap:
     custom-node-exporter:
