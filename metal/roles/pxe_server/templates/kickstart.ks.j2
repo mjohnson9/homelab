@@ -13,7 +13,7 @@ clearpart --all --drives={{ hostvars[item]['disk'] }}
 # Partitioning
 ignoredisk --only-use={{ hostvars[item]['disk'] }}
 reqpart
-partition / --fstype=ext4 --encrypted --size=65536 --maxsize=131072 --grow --fsoptions=discard --passphrase=temppass
+partition / --fstype=ext4 --encrypted --size=65536 --maxsize=131072 --grow --fsoptions=discard,noatime --passphrase=temppass
 partition swap --recommended --encrypted --fsoptions=discard --passphrase=temppass
 
 # Configure management network
