@@ -13,7 +13,9 @@ spec:
     - superuser
     - createdb
     matrix.synapse: []
+    authentik.authentik: []
   databases:
     synapse: matrix.synapse
+    authentik: authentik.authentik
   postgresql:
     version: "14"
