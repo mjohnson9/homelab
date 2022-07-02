@@ -1,0 +1,11 @@
+*/5 * * * * /node-exporters/md_info.sh | sponge /var/run/node-exporter-textfile/md_info.prom
+*/5 * * * * /node-exporters/smartmon.sh | sponge /var/run/node-exporter-textfile/smartmon.prom
+*/5 * * * * /node-exporters/md_info_detail.sh | sponge /var/run/node-exporter-textfile/md_info_detail.prom
+*/5 * * * * /node-exporters/pacman.sh | sponge /var/run/node-exporter-textfile/pacman.prom
+*/5 * * * * /node-exporters/deleted_libraries.py | sponge /var/run/node-exporter-textfile/deleted_libraries.prom
+*/5 * * * * /node-exporters/inotify-instances | sponge /var/run/node-exporter-textfile/inotify-instances.prom
+*/5 * * * * /node-exporters/lvm-prom-collector -g | sponge /var/run/node-exporter-textfile/lvm-prom-collector-groups.prom
+*/5 * * * * /node-exporters/lvm-prom-collector -p | sponge /var/run/node-exporter-textfile/lvm-prom-collector-physical.prom
+*/5 * * * * /node-exporters/lvm-prom-collector -s | sponge /var/run/node-exporter-textfile/lvm-prom-collector-snapshots.prom
+*/5 * * * * /node-exporters/lvm-prom-collector -t | sponge /var/run/node-exporter-textfile/lvm-prom-collector-thinpool.prom
+*/5 * * * * /node-exporters/btrfs_stats.py -t | sponge /var/run/node-exporter-textfile/btrfs_stats.prom
