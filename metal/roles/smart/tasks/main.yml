@@ -1,0 +1,27 @@
+- name: Install smartmontools package
+  yum:
+    name: smartmontools
+    state: present
+
+- name: Copy smartd configuration
+  ansible.builtin.copy:
+    src: smartd.conf
+    dest: /etc/smartmontools/smartd.conf
+    owner: root
+    group: root
+    mode: 0644
+  register: smartd_conf
+
+- name: Enable smartd
+  ansible.builtin.systemd:
+    name: smartd
+    enabled: true
+
+- name: Restart smartd
+  when: smartd_conf.changed
+  ansible.builtin.systemd:
+    name: smartd
+    state: restarted
+  register: smartd_restart
+  until: smartd_restart is succeeded
+  retries: 5

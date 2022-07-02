@@ -1,0 +1,2 @@
+rpm_url: "https://zfsonlinux.org/epel/zfs-release.el8_6.noarch.rpm"
+rpm_checksum: "sha256:9f50fd9932934d83ecdaff2c92356d8e23e71069e721a3d0c899744bbe61616c"
