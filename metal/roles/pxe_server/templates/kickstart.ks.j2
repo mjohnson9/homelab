@@ -12,8 +12,9 @@ lang en_US.UTF-8
 clearpart --all --drives={{ hostvars[item]['disk'] }}
 # Partitioning
 ignoredisk --only-use={{ hostvars[item]['disk'] }}
+
 reqpart
-partition / --fstype=ext4 --encrypted --size=65536 --maxsize=131072 --grow --fsoptions=discard,noatime --passphrase=temppass
+partition / --fstype=ext4 --encrypted --size=32768 --maxsize=131072 --grow --fsoptions=discard,noatime --passphrase=temppass
 partition swap --recommended --encrypted --fsoptions=discard --passphrase=temppass
 
 # Configure management network
@@ -69,6 +70,16 @@ swap_partuuid="$(blkid -o value -s PARTUUID "{{ hostvars[item]['disk'] }}-part3"
 swap_service_suffix="$(systemd-escape "luks-${swap_uuid}")"
 sed --in-place=.ks-backup --regexp-extended "/\s+UUID=${swap_uuid}\s+/d" /etc/crypttab
 printf "luks-%s /dev/disk/by-partuuid/%s swap,cipher=aes-cbc-essiv:sha256,size=256,discard\n" "${swap_uuid}" "${swap_partuuid}" >>/etc/crypttab
+<<<<<<< HEAD
+=======
+systemctl stop dev-mapper-"${swap_service_suffix}".swap
+systemctl stop systemd-cryptsetup@"${swap_service_suffix}".service
+rm -fv /run/systemd/generator/systemd-cryptsetup\@*.service /tmp/systemd-cryptsetup\@luks\\x2d*.service
+/usr/lib/systemd/system-generators/systemd-cryptsetup-generator
+systemctl daemon-reload
+systemctl start systemd-cryptsetup@"${swap_service_suffix}".service
+systemctl start dev-mapper-"${swap_service_suffix}".swap
+>>>>>>> a013aef (metal: automate encryption setup)
 
 # after all of that, regenerate initramfs
 dracut -fv --regenerate-all
