@@ -161,7 +161,7 @@ kube-prometheus-stack:
 
     sidecars:
       - name: textfile-collectors
-        image: n0rad/alpine-node-exporter-textfile-collector-scripts:20220701.091122-b8859a8a@sha256:1c1beea52249d2c6100d082582c7483264a9e565af3bfba69ca56194de74f55f
+        image: registry.johnson.computer/node-exporter-textfile-collectors:22.7.1
         args: ["/usr/sbin/crond", "-f", "-l", "0", "-L", "/dev/stdout"]
         securityContext:
           runAsNonRoot: false
