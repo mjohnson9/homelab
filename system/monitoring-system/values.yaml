@@ -148,6 +148,21 @@ kube-prometheus-stack:
     deploymentStrategy:
       type: Recreate
 
+  prometheus-node-exporter:
+    extraArgs:
+      - --collector.filesystem.mount-points-exclude=^/(dev|proc|sys|var/lib/docker/.+|var/lib/kubelet/.+|run/k3s/containerd/.+)($|/)
+      - --collector.filesystem.fs-types-exclude=^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|iso9660|mqueue|nsfs|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|selinuxfs|squashfs|sysfs|tracefs)$
+      - --collector.textfile.directory=/var/run/node-exporter-textfile
+
+    sidecarVolumeMount:
+      - name: collector-textfiles
+        mountPath: /var/run/node-exporter-textfile
+        readOnly: false
+
+    sidecars:
+      - name: textfile-collectors
+        image: n0rad/alpine-node-exporter-textfile-collector-scripts:20220701.091122-b8859a8a@sha256:1c1beea52249d2c6100d082582c7483264a9e565af3bfba69ca56194de74f55f
+
   additionalPrometheusRulesMap:
     custom-node-exporter:
       groups:
