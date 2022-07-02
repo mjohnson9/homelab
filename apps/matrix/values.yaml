@@ -37,6 +37,8 @@ synapse:
         mountPath: /run/synapse-extra-secret-config
     extraCommands:
       - "cp -av /run/synapse-extra-secret-config/config.yaml /synapse/config/conf.d/extra-secret-config.yaml"
+    strategy:
+      type: Recreate
 
   wellknown:
     enabled: true
