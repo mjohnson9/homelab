@@ -3,6 +3,7 @@ Description=Load ZFS keys
 DefaultDependencies=no
 Before=zfs-mount.service
 After=zfs-import.target
+After=zfs-volume-wait.service
 Requires=zfs-import.target
 
 [Service]
