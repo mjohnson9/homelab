@@ -32,6 +32,22 @@ authentik:
     - secretRef:
         name: authentik-secret-env
       prefix: "AUTHENTIK_"
+    - secretRef:
+        name: authentik-secret-env
+      prefix: "AUTHENTIK_"
+
+  env:
+    AUTHENTIK_POSTGRESQL__NAME: authentik
+
+  envValueFrom:
+    AUTHENTIK_POSTGRESQL__USER:
+      secretKeyRef:
+        name: authentik.authentik.shared-cluster.credentials.postgresql.acid.zalan.do
+        key: username
+    AUTHENTIK_POSTGRESQL__PASSWORD:
+      secretKeyRef:
+        name: authentik.authentik.shared-cluster.credentials.postgresql.acid.zalan.do
+        key: password
 
   prometheus:
     serviceMonitor:
