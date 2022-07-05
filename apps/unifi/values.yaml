@@ -33,3 +33,5 @@ unifi:
     enabled: true
     persistence:
       enabled: true
+    updateStrategy:
+      type: Recreate
