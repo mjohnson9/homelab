@@ -31,7 +31,5 @@ unifi:
 
   mongodb:
     enabled: true
-    auth:
-      enabled: true
     persistence:
       enabled: true
