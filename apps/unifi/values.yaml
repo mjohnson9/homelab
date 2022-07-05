@@ -25,6 +25,7 @@ unifi:
   persistence:
     data:
       enabled: true
+      size: 2Gi
       accessMode: ReadWriteOnce
       storageClass: zfs-default
 
