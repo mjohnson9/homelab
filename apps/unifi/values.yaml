@@ -1,0 +1,27 @@
+unifi:
+  env:
+    TZ: America/New York
+
+  ingress:
+    main:
+      enabled: true
+      ingressClassName: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        hajimari.io/appName: UniFi
+
+        # only allow internal clients
+        nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8
+      hosts:
+        - host: &host unifi.johnson.computer
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: unifi-tls-certificate
+          hosts:
+            - *host
+
+  persistence:
+    data:
+      enabled: true
