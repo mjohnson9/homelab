@@ -25,3 +25,11 @@ unifi:
   persistence:
     data:
       enabled: true
+      storageClass: zfs-default
+
+  mongodb:
+    enabled: true
+    auth:
+      enabled: true
+    persistence:
+      enabled: true
