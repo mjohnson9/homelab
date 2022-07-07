@@ -211,7 +211,7 @@ kube-prometheus-stack:
       podMonitorSelectorNilUsesHelmValues: false
       probeSelectorNilUsesHelmValues: false
 
-      replicas: 3
+      replicas: 1
 
       retention: 365d
 
