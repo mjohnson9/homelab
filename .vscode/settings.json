@@ -7,6 +7,7 @@
         "https://raw.githubusercontent.com/rancher/k3d/main/pkg/config/config.versions.schema.json": "file:///home/michael/Projects/homelab/metal/k3d-dev.yaml",
         "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-inventory.json": "file:///home/michael/Projects/homelab/metal/inventories/prod.yml",
         "tekton:/home/michael/Projects/homelab/.tekton/tasks/check-git-files-changed.yaml": "file:///home/michael/Projects/homelab/.tekton/tasks/check-git-files-changed.yaml",
-        "https://json.schemastore.org/kustomization.json": "file:///home/michael/Projects/homelab/.tekton/tasks/kustomization.yaml"
+        "https://json.schemastore.org/kustomization.json": "file:///home/michael/Projects/homelab/.tekton/tasks/kustomization.yaml",
+        "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible.json#/$defs/tasks": "file:///Users/michael/Projects/homelab/metal/cluster.yml"
     }
 }
