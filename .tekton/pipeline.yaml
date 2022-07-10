@@ -168,7 +168,7 @@ spec:
     - name: shared-data
       volumeClaimTemplate:
         spec:
-          storageClassName: longhorn
+          storageClassName: zfs-default
           accessModes:
             - ReadWriteOnce
           resources:
