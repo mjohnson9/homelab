@@ -23,6 +23,7 @@ RUN pacman --sync --refresh --noconfirm \
     libisoburn \
     make \
     mdbook \
+    nano \
     neovim \
     openssh \
     p7zip \
