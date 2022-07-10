@@ -35,7 +35,5 @@ hajimari:
             url: https://github.com/mjohnson9/homelab
       - name: Managed services
         links:
-          - name: Terraform Cloud
-            url: https://app.terraform.io
           - name: Cloudflare
             url: https://dash.cloudflare.com

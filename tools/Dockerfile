@@ -34,7 +34,6 @@ RUN pacman --sync --refresh --noconfirm \
     python-pip \
     python-rich \
     sudo \
-    terraform \
     yamllint
 
 # TODO better way to install k3d?
