@@ -1,0 +1,7 @@
+- name: Restart smartd
+  ansible.builtin.systemd:
+    name: smartd
+    state: restarted
+  register: smartd_restart
+  until: smartd_restart is succeeded
+  retries: 5

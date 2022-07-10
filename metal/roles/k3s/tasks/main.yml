@@ -3,8 +3,8 @@
     name: "{{ item.name }}"
     value: "{{ item.value }}"
     state: present
-    sysctl_set: yes
-    reload: yes
+    sysctl_set: true
+    reload: true
   loop:
     - name: fs.inotify.max_user_instances
       value: 1048576
@@ -39,6 +39,8 @@
     owner: root
     group: root
     mode: 0755
+  notify:
+    - Restart k3s
 
 - name: Copy k3s shutdown script to nodes
   ansible.builtin.copy:
@@ -82,6 +84,8 @@
     content: "{{ k3s_token_base64.content | b64decode }}"
     dest: "{{ k3s_token_file }}"
     mode: 0600
+  notify:
+    - Restart k3s
 
 - name: Copy k3s config files
   ansible.builtin.template:
@@ -93,6 +97,8 @@
       dest: "{{ k3s_config_file }}"
     - src: k3s.service.j2
       dest: "{{ k3s_service_file }}"
+  notify:
+    - Restart k3s
 
 - name: Copy k3s shutdown service to nodes
   ansible.builtin.copy:
@@ -106,7 +112,6 @@
   ansible.builtin.systemd:
     name: k3s
     enabled: true
-    state: started
   register: k3s_service
   until: k3s_service is succeeded
   retries: 5

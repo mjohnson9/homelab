@@ -1,0 +1,7 @@
+- name: Restart k3s
+  ansible.builtin.systemd:
+    name: k3s
+    state: restarted
+  register: k3s_restart
+  until: k3s_restart is succeeded
+  retries: 5
