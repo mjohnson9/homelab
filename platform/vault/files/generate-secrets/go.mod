@@ -5,8 +5,7 @@ go 1.17
 require (
 	github.com/hashicorp/vault/api v1.7.2
 	github.com/sethvargo/go-password v0.2.0
-	gopkg.in/yaml.v3 v3.0.1
-	gopkg.in/yaml.v3 v3.0.1
+	gopkg.in/yaml.v2 v2.2.5
 )
 
 require (
@@ -54,4 +53,5 @@ require (
 	google.golang.org/grpc v1.41.0 // indirect
 	google.golang.org/protobuf v1.26.0 // indirect
 	gopkg.in/square/go-jose.v2 v2.5.1 // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
