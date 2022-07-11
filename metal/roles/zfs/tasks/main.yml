@@ -36,7 +36,7 @@
     state: present
 
 - name: Install ZFS package
-  yum:
+  ansible.builtin.yum:
     name: zfs
     state: present
 
