@@ -21,17 +21,17 @@
     key: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xc93afffd9f3f7b03c310ceb6a9d5a1c0f14ab620
 
 - name: Install ZFS release package
-  yum:
+  ansible.builtin.yum:
     name: "{{ rpm.dest }}"
     state: present
 
 - name: Enable EPEL
-  yum:
+  ansible.builtin.yum:
     name: epel-release
     state: present
 
 - name: Install kernel development package
-  yum:
+  ansible.builtin.yum:
     name: kernel-devel
     state: present
 
@@ -84,11 +84,11 @@
 
 - name: Cache ZFS pool
   ansible.builtin.command: /usr/sbin/zpool set cachefile=/etc/zfs/zpool.cache tank
-  changed_when: False
+  changed_when: false
 
 - name: Mount ZFS volumes
   ansible.builtin.command: /usr/sbin/zfs mount -a
-  changed_when: False
+  changed_when: false
 
 - name: Enable monthly scrubbing
   ansible.builtin.systemd:
