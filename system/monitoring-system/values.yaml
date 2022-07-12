@@ -211,6 +211,8 @@ kube-prometheus-stack:
       podMonitorSelectorNilUsesHelmValues: false
       probeSelectorNilUsesHelmValues: false
 
+      scrapeInterval: 90s
+
       replicas: 1
 
       retention: 365d
