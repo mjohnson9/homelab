@@ -211,7 +211,7 @@ kube-prometheus-stack:
       podMonitorSelectorNilUsesHelmValues: false
       probeSelectorNilUsesHelmValues: false
 
-      scrapeInterval: 90s
+      scrapeInterval: 5m
 
       replicas: 1
 
@@ -221,7 +221,7 @@ kube-prometheus-stack:
 
       additionalScrapeConfigs:
         - job_name: gateway
-          scrape_interval: 1m
+          scrape_interval: 5m
           scrape_timeout: 30s
           scheme: https
           static_configs:
