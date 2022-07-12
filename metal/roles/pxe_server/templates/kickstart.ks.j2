@@ -14,6 +14,7 @@ clearpart --all --drives={{ hostvars[item]['disk'] }}
 ignoredisk --only-use={{ hostvars[item]['disk'] }}
 
 reqpart
+partition /boot --fstype=ext4 --size=512 --maxsize=1024 --grow --fsoptions=discard,noatime
 partition / --fstype=ext4 --encrypted --size=32768 --maxsize=131072 --grow --fsoptions=discard,noatime --passphrase=temppass
 partition swap --recommended --encrypted --fsoptions=discard --passphrase=temppass
 
@@ -26,6 +27,7 @@ network --device=management --interfacename=servers --vlanid=5 --bootproto=stati
 
 # Use network installation
 repo --name="Minimal" --baseurl=http://{{ ansible_default_ipv4.address }}/os/Minimal
+repo --name="AppStream" --baseurl="https://dl.rockylinux.org/pub/rocky/8.6/AppStream/x86_64/kickstart" --cost=10
 url --url="http://{{ ansible_default_ipv4.address }}/os"
 
 # Disable Setup Agent on first boot
@@ -60,13 +62,13 @@ clevis-systemd
 %post
 # unlock the root disk with TPM
 # TODO: Investigate PCR stability and the practicality of using PCRs
-clevis luks bind -y -k - -d "{{ hostvars[item]['disk'] }}-part2" \
+clevis luks bind -y -k - -d "{{ hostvars[item]['disk'] }}-part3" \
     tpm2 '{}' <<< "temppass"
-cryptsetup luksRemoveKey "{{ hostvars[item]['disk'] }}-part2" <<< "temppass"
+cryptsetup luksRemoveKey "{{ hostvars[item]['disk'] }}-part3" <<< "temppass"
 
 # encrypt swap with a random key
-swap_uuid="$(blkid -o value -s UUID "{{ hostvars[item]['disk'] }}-part3")"
-swap_partuuid="$(blkid -o value -s PARTUUID "{{ hostvars[item]['disk'] }}-part3")"
+swap_uuid="$(blkid -o value -s UUID "{{ hostvars[item]['disk'] }}-part4")"
+swap_partuuid="$(blkid -o value -s PARTUUID "{{ hostvars[item]['disk'] }}-part4")"
 swap_service_suffix="$(systemd-escape "luks-${swap_uuid}")"
 sed --in-place=.ks-backup --regexp-extended "/\s+UUID=${swap_uuid}\s+/d" /etc/crypttab
 printf "luks-%s /dev/disk/by-partuuid/%s /dev/urandom swap,cipher=aes-cbc-essiv:sha256,size=256,discard,nofail,x-systemd.device-timeout=30min\n" "${swap_uuid}" "${swap_partuuid}" >>/etc/crypttab
