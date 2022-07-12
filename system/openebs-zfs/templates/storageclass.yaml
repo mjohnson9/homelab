@@ -10,3 +10,8 @@ allowVolumeExpansion: true
 parameters:
   fstype: "zfs"
   poolname: "tank/kubernetes"
+allowedTopologies:
+- matchLabelExpressions:
+  - key: kubernetes.io/hostname
+    values:
+      - hv01-home.johnson.computer

@@ -9,3 +9,8 @@ parameters:
   fstype: "zfs"
   poolname: "tank/kubernetes"
   recordsize: "8K"
+allowedTopologies:
+- matchLabelExpressions:
+  - key: kubernetes.io/hostname
+    values:
+      - hv01-home.johnson.computer
