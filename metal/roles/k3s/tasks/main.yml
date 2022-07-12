@@ -124,6 +124,14 @@
   until: shutdown_k3s_service is succeeded
   retries: 5
 
+- name: Start k3s service
+  ansible.builtin.systemd:
+    name: k3s
+    state: started
+  register: k3s_service
+  until: k3s_service is succeeded
+  retries: 5
+
 - name: Get Kubernetes config file
   run_once: true
   ansible.builtin.slurp:
