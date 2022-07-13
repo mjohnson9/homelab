@@ -18,12 +18,11 @@ partition /boot --fstype=ext4 --size=512 --maxsize=1024 --grow --fsoptions=disca
 partition / --fstype=ext4 --encrypted --size=32768 --maxsize=131072 --grow --fsoptions=discard,noatime --passphrase=temppass
 partition swap --recommended --encrypted --fsoptions=discard --passphrase=temppass
 
-# Configure management network
-# TODO: Remove; these hosts shouldn't be on the management network on non-IPMI interfaces
-network --hostname={{ hostvars[item]['inventory_hostname'] }} --device=management --teamslaves={{ hostvars[item]['network']['bond_members'] | join(',') }} --teamconfig='{"runner":{"name": "lacp", "active": true, "fast_rate": true}}' --bootproto=dhcp --ipv6=auto --nodefroute --nameserver="" --activate
-
-# Configure server's primary network
-network --device=management --interfacename=servers --vlanid=5 --bootproto=static --ip={{ hostvars[item]['ansible_host'] }} --gateway={{ hostvars[item]['network']['gateway'] }} --nameserver={{ hostvars[item]['network']['gateway'] }} --netmask={{ hostvars[item]['network']['netmask'] }} --ipv6=auto --activate
+# Configure primary network interface
+network --hostname={{ hostvars[item]['inventory_hostname'] }} --device=servers --teamslaves={{ hostvars[item]['network']['bond_members'] | join(',') }} --teamconfig='{"runner":{"name": "lacp", "active": true, "fast_rate": true}}' \
+        --bootproto=static --ip={{ hostvars[item]['ansible_host'] }} --gateway={{ hostvars[item]['network']['gateway'] }} --nameserver={{ hostvars[item]['network']['gateway'] }} --netmask={{ hostvars[item]['network']['netmask'] }} \
+        --ipv6=auto \
+        --activate
 
 # Use network installation
 repo --name="Minimal" --baseurl=http://{{ ansible_default_ipv4.address }}/os/Minimal
@@ -60,6 +59,8 @@ clevis-systemd
 %end
 
 %post
+set -ex
+
 # unlock the root disk with TPM
 # TODO: Investigate PCR stability and the practicality of using PCRs
 clevis luks bind -y -k - -d "{{ hostvars[item]['disk'] }}-part3" \
