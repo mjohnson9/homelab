@@ -10,6 +10,7 @@ allowVolumeExpansion: true
 parameters:
   fstype: "zfs"
   poolname: "tank/kubernetes"
+  shared: "yes"
 allowedTopologies:
 - matchLabelExpressions:
   - key: kubernetes.io/hostname
