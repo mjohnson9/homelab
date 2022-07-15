@@ -19,3 +19,67 @@ spec:
     authentik: authentik.authentik
   postgresql:
     version: "14"
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: shared-cluster-vacuum-lite
+spec:
+  schedule: "15 4 * * 1-6"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          securityContext:
+            runAsUser: 1000
+          containers:
+            - name: vacuum-lite
+              image: postgres:14.2
+              imagePullPolicy: IfNotPresent
+              env:
+                - name: PG_COLOR
+                  value: always
+                - name: PGUSER
+                  valueFrom:
+                    secretKeyRef:
+                      name: postgres.shared-cluster.credentials.postgresql.acid.zalan.do
+                      key: username
+                - name: PGPASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: postgres.shared-cluster.credentials.postgresql.acid.zalan.do
+                      key: password
+              command: ["/usr/bin/vacuumdb", "--all", "--analyze", "--host=shared-cluster.postgresql.svc.cluster.local"]
+          restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: shared-cluster-vacuum-full
+spec:
+  schedule: "15 4 * * 0"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          securityContext:
+            runAsUser: 1000
+          containers:
+            - name: vacuum-full
+              image: postgres:14.2
+              imagePullPolicy: IfNotPresent
+              env:
+                - name: PG_COLOR
+                  value: always
+                - name: PGUSER
+                  valueFrom:
+                    secretKeyRef:
+                      name: postgres.shared-cluster.credentials.postgresql.acid.zalan.do
+                      key: username
+                - name: PGPASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: postgres.shared-cluster.credentials.postgresql.acid.zalan.do
+                      key: password
+              command: ["/usr/bin/vacuumdb", "--all", "--analyze", "--full", "--host=shared-cluster.postgresql.svc.cluster.local"]
+          restartPolicy: Never
