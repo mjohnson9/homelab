@@ -49,7 +49,7 @@ spec:
                     secretKeyRef:
                       name: postgres.shared-cluster.credentials.postgresql.acid.zalan.do
                       key: password
-              command: ["/usr/bin/vacuumdb", "--all", "--analyze", "--host=shared-cluster.postgresql.svc.cluster.local"]
+              command: ["/usr/bin/vacuumdb", "--all", "--parallel=4", "--analyze", "--host=shared-cluster.postgresql.svc.cluster.local"]
           restartPolicy: Never
 # ---
 # apiVersion: batch/v1
