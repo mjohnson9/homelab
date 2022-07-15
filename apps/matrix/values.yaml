@@ -61,6 +61,9 @@ synapse:
         - "/_matrix/federation/v1/send/"
 
     federation_sender:
+      strategy:
+        type: RollingUpdate
+
       enabled: true
 
     appservice:
