@@ -25,7 +25,7 @@ kind: CronJob
 metadata:
   name: shared-cluster-vacuum-lite
 spec:
-  schedule: "15 4 * * 1-6"
+  schedule: "15 3 * * 1-6"
   jobTemplate:
     spec:
       template:
@@ -57,7 +57,7 @@ kind: CronJob
 metadata:
   name: shared-cluster-vacuum-full
 spec:
-  schedule: "15 4 * * 0"
+  schedule: "15 3 * * 0"
   jobTemplate:
     spec:
       template:
