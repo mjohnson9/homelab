@@ -49,37 +49,37 @@ spec:
                     secretKeyRef:
                       name: postgres.shared-cluster.credentials.postgresql.acid.zalan.do
                       key: password
-              command: ["/usr/bin/vacuumdb", "--all", "--parallel=4", "--analyze", "--host=shared-cluster.postgresql.svc.cluster.local"]
+              command: ["/usr/bin/vacuumdb", "--parallel=4", "--all", "--analyze", "--host=shared-cluster.postgresql.svc.cluster.local"]
           restartPolicy: Never
-# ---
-# apiVersion: batch/v1
-# kind: CronJob
-# metadata:
-#   name: shared-cluster-vacuum-full
-# spec:
-#   schedule: "15 3 * * 0"
-#   jobTemplate:
-#     spec:
-#       template:
-#         spec:
-#           securityContext:
-#             runAsUser: 1000
-#           containers:
-#             - name: vacuum-full
-#               image: postgres:14.2
-#               imagePullPolicy: IfNotPresent
-#               env:
-#                 - name: PG_COLOR
-#                   value: always
-#                 - name: PGUSER
-#                   valueFrom:
-#                     secretKeyRef:
-#                       name: postgres.shared-cluster.credentials.postgresql.acid.zalan.do
-#                       key: username
-#                 - name: PGPASSWORD
-#                   valueFrom:
-#                     secretKeyRef:
-#                       name: postgres.shared-cluster.credentials.postgresql.acid.zalan.do
-#                       key: password
-#               command: ["/usr/bin/vacuumdb", "--all", "--analyze", "--full", "--host=shared-cluster.postgresql.svc.cluster.local"]
-#           restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: shared-cluster-vacuum-full-matrix
+spec:
+  schedule: "45 4 * * 0"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          securityContext:
+            runAsUser: 1000
+          containers:
+            - name: vacuum-full-matrix
+              image: postgres:14.2
+              imagePullPolicy: IfNotPresent
+              env:
+                - name: PG_COLOR
+                  value: always
+                - name: PGUSER
+                  valueFrom:
+                    secretKeyRef:
+                      name: postgres.shared-cluster.credentials.postgresql.acid.zalan.do
+                      key: username
+                - name: PGPASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: postgres.shared-cluster.credentials.postgresql.acid.zalan.do
+                      key: password
+              command: ["/usr/bin/vacuumdb", "--parallel=4", "--full", "--all", "--analyze", "--host=shared-cluster.postgresql.svc.cluster.local", "synapse"]
+          restartPolicy: Never
