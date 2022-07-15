@@ -39,6 +39,10 @@ synapse:
       type: Recreate
 
   workers:
+    default:
+      strategy:
+        type: Recreate
+
     synchrotron:
       enabled: true
       generic: true
