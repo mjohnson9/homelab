@@ -1,5 +1,3 @@
-# todo: macaroon secret key
-
 synapse:
   serverName: "johnson.gg"
   publicServerName: "matrix.johnson.gg"
