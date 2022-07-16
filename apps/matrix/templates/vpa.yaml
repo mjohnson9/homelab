@@ -1,0 +1,17 @@
+{{- $releaseName := .Release.Name -}}
+{{- range $worker, $config := .Values.synapse.workers }}
+{{- if $config.enabled }}
+---
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: {{ $releaseName }}-synapse-{{ $worker }}-vpa
+spec:
+  targetRef:
+    apiVersion: "apps/v1"
+    kind: Deployment
+    name: {{ $releaseName }}-{{ $worker }}
+  updatePolicy:
+    updateMode: "Auto"
+{{- end -}}
+{{- end -}}
