@@ -2,15 +2,16 @@
 {{- range $worker, $config := .Values.synapse.workers }}
 {{- if $config.enabled }}
 ---
+{{- $workerNameEscaped := ($worker | replace "_" "-") -}}
 apiVersion: autoscaling.k8s.io/v1
 kind: VerticalPodAutoscaler
 metadata:
-  name: {{ $releaseName }}-synapse-{{ $worker | replace "_" "-" }}-vpa
+  name: {{ $releaseName }}-synapse-{{ $workerNameEscaped }}-vpa
 spec:
   targetRef:
     apiVersion: "apps/v1"
     kind: Deployment
-    name: {{ $releaseName }}-{{ $worker }}
+    name: {{ $releaseName }}-{{ $workerNameEscaped }}
   updatePolicy:
     updateMode: "Auto"
 {{- end -}}
