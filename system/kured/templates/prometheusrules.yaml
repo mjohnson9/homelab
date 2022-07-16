@@ -1,0 +1,24 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: kured
+    app.kubernetes.io/version: {{ .Release.Revision }}
+  name: kured
+spec:
+  groups:
+  - name: kured Alerts
+    rules:
+    - alert: RebootRequired
+      annotations:
+        message: |
+          Node {{ `{{ $labels.node }}` }} has required a reboot for 24 hours, but the reboot daemon has failed to do so.
+        summary: Reboot required
+        impact: |
+          Cluster nodes more vulnerable to security exploits. Eventually, no disk space left.
+      expr: max(kured_reboot_required) > 0
+      for: 24h
+      labels:
+        severity: warning
