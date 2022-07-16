@@ -2,6 +2,6 @@
   hosts: metal
   roles:
     - smart
-    - zfs
+    # - zfs
     - automatic_upgrade
     - k3s
