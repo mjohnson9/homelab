@@ -87,6 +87,7 @@ sed --in-place=.ks-backup --regexp-extend "s#^(.*\s+UUID=${var_lib_uuid}\s+)([^\
 # create a partition for Ceph that occupies all of the remaining space
 # this is presumed to be an NVMe drive, so I'm hoping it'll be able to handle this much concurrent use
 ceph_start_sector="$(parted -m "{{ hostvars[item]['disk'] }}" unit s print free | tail -n1 | grep -E ':free;$' | cut -d':' -f2)"
+[[ -z "${ceph_start_sector}" ]] && exit 1
 parted --align optimal "{{ hostvars[item]['disk'] }}" mkpart ceph "${ceph_start_sector}" 100%
 
 # after all of that, regenerate initramfs
