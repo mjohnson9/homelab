@@ -19,10 +19,7 @@ partition / --fstype=ext4 --encrypted --size=65535 --fsoptions=noatime --passphr
 partition /var/lib --fstype=ext4 --encrypted --size=262144 --maxsize=524488 --grow --passphrase=temppass
 
 # Configure primary network interface
-network --hostname={{ hostvars[item]['inventory_hostname'] }} --device=servers --teamslaves={{ hostvars[item]['network']['bond_members'] | join(',') }} --teamconfig='{"runner":{"name": "lacp", "active": true, "fast_rate": true}}' \
-        --bootproto=static --ip={{ hostvars[item]['ansible_host'] }} --gateway={{ hostvars[item]['network']['gateway'] }} --nameserver={{ hostvars[item]['network']['gateway'] }} --netmask={{ hostvars[item]['network']['netmask'] }} \
-        --ipv6=auto \
-        --activate
+network --hostname={{ hostvars[item]['inventory_hostname'] }} --device=servers --teamslaves={{ hostvars[item]['network']['bond_members'] | join(',') }} --teamconfig='{"runner":{"name": "lacp", "active": true, "fast_rate": true}}' --bootproto=static --ip={{ hostvars[item]['ansible_host'] }} --gateway={{ hostvars[item]['network']['gateway'] }} --nameserver={{ hostvars[item]['network']['gateway'] }} --netmask={{ hostvars[item]['network']['netmask'] }} --ipv6=auto --activate
 
 # Use network installation
 repo --name="Minimal" --baseurl="http://{{ ansible_default_ipv4.address }}/os/Minimal"
@@ -64,9 +61,9 @@ set -ex
 # TODO: Investigate PCR stability and the practicality of using PCRs
 
 # unlock the root disk with TPM
-clevis luks bind -y -k - -d "{{ hostvars[item]['disk'] }}-part3" \
+{# clevis luks bind -y -k - -d "{{ hostvars[item]['disk'] }}-part3" \
     tpm2 '{}' <<<"temppass"
-cryptsetup luksRemoveKey "{{ hostvars[item]['disk'] }}-part3" <<<"temppass"
+cryptsetup luksRemoveKey "{{ hostvars[item]['disk'] }}-part3" <<<"temppass" #}
 
 # unlock /var/lib with a keyfile
 # create the directory to hold the keyfile
