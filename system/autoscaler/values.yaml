@@ -1,0 +1,4 @@
+vertical-pod-autoscaler:
+  metrics:
+    serviceMonitor:
+      enabled: true
