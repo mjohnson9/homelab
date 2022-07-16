@@ -25,7 +25,7 @@ network --hostname={{ hostvars[item]['inventory_hostname'] }} --device=servers -
         --activate
 
 # Use network installation
-repo --name="Minimal" --baseurl=http://{{ ansible_default_ipv4.address }}/os/Minimal
+repo --name="Minimal" --baseurl="http://{{ ansible_default_ipv4.address }}/os/Minimal"
 repo --name="AppStream" --baseurl="https://dl.rockylinux.org/pub/rocky/8.6/AppStream/x86_64/kickstart" --cost=10
 url --url="http://{{ ansible_default_ipv4.address }}/os"
 
