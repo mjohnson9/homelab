@@ -12,7 +12,7 @@ metal:
             netmask: 255.255.255.0
         hv02.home.johnson.computer:
           ansible_host: 10.0.2.11
-          disk: disk/by-path/pci-0000:00:1f.2-ata-6
+          disk: disk/by-path/pci-0000:05:00.0-nvme-1
           network:
             mac: "44:a8:42:2d:f5:b5"
             bond_members: ["eno1", "eno2", "eno3", "eno4"]
