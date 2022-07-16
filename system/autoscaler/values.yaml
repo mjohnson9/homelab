@@ -1,4 +1,8 @@
 vertical-pod-autoscaler:
+  updater:
+    extraArgs:
+      min-replicas: 1
+
   metrics:
     serviceMonitor:
       enabled: true
