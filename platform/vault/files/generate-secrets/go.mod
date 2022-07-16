@@ -5,7 +5,7 @@ go 1.17
 require (
 	github.com/hashicorp/vault/api v1.7.2
 	github.com/sethvargo/go-password v0.2.0
-	gopkg.in/yaml.v2 v2.2.5
+	gopkg.in/yaml.v2 v2.4.0
 )
 
 require (
