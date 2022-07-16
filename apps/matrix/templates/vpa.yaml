@@ -5,7 +5,7 @@
 apiVersion: autoscaling.k8s.io/v1
 kind: VerticalPodAutoscaler
 metadata:
-  name: {{ $releaseName }}-synapse-{{ $worker }}-vpa
+  name: {{ $releaseName }}-synapse-{{ $worker | replace "_" "-" }}-vpa
 spec:
   targetRef:
     apiVersion: "apps/v1"
