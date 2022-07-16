@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: gateway-configs
 data:
-    default: {{ toJson .Values.gatewayConfig }}
+    default: {{ toJson .Values.gatewayConfig | quote }}
