@@ -29,7 +29,7 @@ unifi:
       accessMode: ReadWriteOnce
       storageClass: zfs-default
 
-    gatewayConfig:
+    gateway-config:
       enabled: true
       type: configMap
       readOnly: true
