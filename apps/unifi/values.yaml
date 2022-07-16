@@ -29,9 +29,20 @@ unifi:
       accessMode: ReadWriteOnce
       storageClass: zfs-default
 
+    gatewayConfig:
+      enabled: true
+      type: configMap
+      readOnly: true
+      name: default-gateway-config
+      subPath: config.gateway.json
+      mountPath: /unifi/data/sites/default/config.gateway.json
+
   mongodb:
     enabled: true
     persistence:
       enabled: true
     updateStrategy:
       type: Recreate
+
+gatewayConfig:
+  test: hi
