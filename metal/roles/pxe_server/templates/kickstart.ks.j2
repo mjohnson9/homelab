@@ -61,9 +61,9 @@ set -ex
 # TODO: Investigate PCR stability and the practicality of using PCRs
 
 # unlock the root disk with TPM
-{# clevis luks bind -y -k - -d "{{ hostvars[item]['disk'] }}-part3" \
+{# clevis luks bind -y -k - -d "/dev/{{ hostvars[item]['disk'] }}-part3" \
     tpm2 '{}' <<<"temppass"
-cryptsetup luksRemoveKey "{{ hostvars[item]['disk'] }}-part3" <<<"temppass" #}
+cryptsetup luksRemoveKey "/dev/{{ hostvars[item]['disk'] }}-part3" <<<"temppass" #}
 
 # unlock /var/lib with a keyfile
 # create the directory to hold the keyfile
@@ -75,17 +75,17 @@ dd bs=512 count=4 if=/dev/random of=/etc/luks.keys/var-lib iflag=fullblock
 chmod 0400 /etc/luks.keys/var-lib
 
 # add the keyfile
-cryptsetup luksChangeKey "{{ hostvars[item]['disk'] }}-part4" /etc/luks.keys/var-lib <<<"temppass"
+cryptsetup luksChangeKey "/dev/{{ hostvars[item]['disk'] }}-part4" /etc/luks.keys/var-lib <<<"temppass"
 
 # change the keyfile in /etc/crypttab
-var_lib_uuid="$(blkid -o value -s UUID "{{ hostvars[item]['disk'] }}-part4")"
+var_lib_uuid="$(blkid -o value -s UUID "/dev/{{ hostvars[item]['disk'] }}-part4")"
 sed --in-place=.ks-backup --regexp-extend "s#^(.*\s+UUID=${var_lib_uuid}\s+)([^\s]+)(\s+.*)\$#\1/etc/luks.keys/var-lib\3#" /etc/crypttab
 
 # create a partition for Ceph that occupies all of the remaining space
 # this is presumed to be an NVMe drive, so I'm hoping it'll be able to handle this much concurrent use
-ceph_start_sector="$(parted -m "{{ hostvars[item]['disk'] }}" unit s print free | tail -n1 | grep -E ':free;$' | cut -d':' -f2)"
+ceph_start_sector="$(parted -m "/dev/{{ hostvars[item]['disk'] }}" unit s print free | tail -n1 | grep -E ':free;$' | cut -d':' -f2)"
 [[ -z "${ceph_start_sector}" ]] && exit 1
-parted --align optimal "{{ hostvars[item]['disk'] }}" mkpart ceph "${ceph_start_sector}" 100%
+parted --align optimal "/dev/{{ hostvars[item]['disk'] }}" mkpart ceph "${ceph_start_sector}" 100%
 
 # after all of that, regenerate initramfs
 dracut -fv --regenerate-all
