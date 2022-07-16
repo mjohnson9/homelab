@@ -3,3 +3,12 @@ kured:
     annotateNodes: true
     rebootSentinelCommand: sh -c "! needs-restarting --reboothint"
     timeZone: America/New_York
+
+    # wait 30 minutes for nodes to stabilize before rebooting another node
+    lockReleaseDelay: 30m
+
+    # check every 5 minutes
+    period: 5m
+
+  metrics:
+    create: true
