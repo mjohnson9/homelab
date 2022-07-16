@@ -10,5 +10,9 @@ kured:
     # check every 5 minutes
     period: 5m
 
+    # don't reboot if there are active Prometheus alerts
+    prometheusUrl: http://monitoring-system-kube-pro-prometheus.monitoring-system:9090
+    alertFilterRegex: "^(Watchdog|RebootRequired)$"
+
   metrics:
     create: true
