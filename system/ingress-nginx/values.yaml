@@ -17,3 +17,7 @@ ingress-nginx:
         enabled: true
   tcp:
     22: gitea/gitea-ssh:22
+    6789: unifi/unifi:6789
+
+  udp:
+    3478: unifi/unifi:3478
