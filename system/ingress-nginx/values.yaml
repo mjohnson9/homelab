@@ -1,5 +1,7 @@
 ingress-nginx:
   controller:
+    replicaCount: 2
+
     service:
       externalTrafficPolicy: "Local"
 
