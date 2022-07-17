@@ -70,6 +70,6 @@ cilium:
         requiredDuringSchedulingIgnoredDuringExecution: []
 
   bgp:
-    enabled: false
+    enabled: true
     announce:
       loadbalancerIP: true
