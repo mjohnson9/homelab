@@ -34,11 +34,6 @@ gitea:
         HOST: "smtp.smtp:25"
         IS_TLS_ENABLED: "false"
 
-  service:
-    ssh:
-      type: LoadBalancer
-      externalTrafficPolicy: Local
-
   persistence:
     storageClass: zfs-default
   postgresql:
