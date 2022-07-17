@@ -9,7 +9,7 @@ data:
         peer-asn: 64521
         my-asn: 64521
     address-pools:
-      - name: default
+      - name: public
         protocol: bgp
         addresses:
           - 76.234.108.200/29
