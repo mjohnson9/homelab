@@ -73,4 +73,5 @@ cilium:
     enabled: true
     announce:
       loadbalancerIP: true
-      podCIDR: true
+      # advertising pod CIDR is broken until v1.12
+      # podCIDR: true
