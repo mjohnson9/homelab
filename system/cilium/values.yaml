@@ -16,7 +16,7 @@ cilium:
   installNoConntrackIptablesRules: true
   tunnel: disabled
   autoDirectNodeRoutes: true
-  ipv4NativeRoutingCIDR: "10.72.0.0/16"
+  ipv4NativeRoutingCIDR: "10.42.0.0/16"
 
   bpf:
     masquerade: true
@@ -34,8 +34,8 @@ cilium:
 
   ipam:
     operator:
-      clusterPoolIPv4PodCIDRList: ["10.72.0.0/16"]
-      clusterPoolIPv4MaskSize: 20
+      clusterPoolIPv4PodCIDRList: ["10.42.0.0/16"]
+      clusterPoolIPv4MaskSize: 24
 
   hubble:
     ui:
