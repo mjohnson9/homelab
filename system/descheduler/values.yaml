@@ -1,5 +1,7 @@
 descheduler:
   deschedulerPolicy:
+    evictLocalStoragePods: true
+
     strategies:
       RemoveDuplicates:
         enabled: false
