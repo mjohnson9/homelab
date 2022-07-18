@@ -5,10 +5,13 @@ descheduler:
     strategies:
       RemoveDuplicates:
         enabled: false
+        nodeFit: true
       RemovePodsViolatingNodeTaints:
         enabled: true
+        nodeFit: true
       RemovePodsViolatingNodeAffinity:
         enabled: true
+        nodeFit: true
         params:
           nodeAffinityType:
             - requiredDuringSchedulingIgnoredDuringExecution
@@ -16,3 +19,4 @@ descheduler:
         enabled: true
       LowNodeUtilization:
         enabled: true
+        nodeFit: true
