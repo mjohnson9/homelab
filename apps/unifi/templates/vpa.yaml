@@ -1,0 +1,26 @@
+{{- $releaseName := .Release.Name -}}
+# VPA for the UniFi Controller
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: {{ $releaseName }}-vpa
+spec:
+  targetRef:
+    apiVersion: "apps/v1"
+    kind: Deployment
+    name: {{ $releaseName }}
+  updatePolicy:
+    updateMode: "Auto"
+---
+# VPA for the UniFi Controller's MongoDB
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: {{ $releaseName }}-mongodb-vpa
+spec:
+  targetRef:
+    apiVersion: "apps/v1"
+    kind: Deployment
+    name: {{ $releaseName }}-mongodb
+  updatePolicy:
+    updateMode: "Auto"
