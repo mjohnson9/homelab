@@ -73,3 +73,4 @@ cilium:
     enabled: true
     announce:
       loadbalancerIP: true
+      podCIDR: true
