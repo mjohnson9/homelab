@@ -1,0 +1,13 @@
+{{- $releaseName := .Release.Name -}}
+# VPA for Synapse itself
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: {{ $releaseName }}-prometheus-vpa
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: StatefulSet
+    name: prometheus-{{ $releaseName }}-kube-pro-prometheus
+  updatePolicy:
+    updateMode: "Auto"
