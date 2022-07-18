@@ -14,6 +14,10 @@
       value: 1048576
     - name: vm.max_map_count
       value: 262144
+    - name: net.ipv4.tcp_congestion_control
+      value: bbr
+    - name: net.core.default_qdisc
+      value: fq_codel
 
 - name: Mount bpffs
   ansible.posix.mount:
