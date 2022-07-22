@@ -13,6 +13,7 @@
     "conventionalCommits.scopes": [
         "kured",
         "matrix",
-        "renovate"
+        "renovate",
+        "prometheus"
     ]
 }
