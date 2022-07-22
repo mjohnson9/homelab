@@ -4,5 +4,5 @@ version: 0.0.0
 dependencies:
   - name: matrix-synapse
     alias: synapse
-    version: 2.3.2
+    version: 2.3.6
     repository: https://ananace.gitlab.io/charts
