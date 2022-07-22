@@ -18,7 +18,7 @@ spec:
         summary: Reboot required
         impact: |
           Cluster nodes more vulnerable to security exploits. Eventually, no disk space left.
-      expr: max(kured_reboot_required) > 0
+      expr: max(kured_reboot_required) by (node) > 0
       for: 24h
       labels:
         severity: warning
