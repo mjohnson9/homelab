@@ -11,6 +11,7 @@
         "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible.json#/$defs/tasks": "metal/cluster.yml"
     },
     "conventionalCommits.scopes": [
-        "kured"
+        "kured",
+        "matrix"
     ]
 }
