@@ -100,6 +100,7 @@ synapse:
   ingress:
     enabled: true
     includeServerName: false
+    includeUnderscoreSynapse: false
 
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
