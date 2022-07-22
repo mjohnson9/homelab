@@ -52,7 +52,12 @@ func main() {
 			}
 
 			for _, randomKey := range randomPassword.Data {
-				res, err := password.Generate(32, 3, 3, false, true)
+				numSymbols := 0
+				if randomKey.Special {
+					numSymbols = 3
+				}
+
+				res, err := password.Generate(randomKey.Length, 3, numSymbols, false, true)
 				if err != nil {
 					log.Fatal(err)
 				}
