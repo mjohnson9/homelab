@@ -6,7 +6,7 @@ renovate:
       {
         "platform": "gitea",
         "endpoint": "https://git.johnson.computer/api/v1",
-        "gitAuthor": "Renovate Bot <bot@renovateapp.com>",
+        "gitAuthor": "renovate[bot] <bot@renovateapp.com>",
         "autodiscover": true
       }
   existingSecret: renovate-secret

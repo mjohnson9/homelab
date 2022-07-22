@@ -12,6 +12,7 @@
     },
     "conventionalCommits.scopes": [
         "kured",
-        "matrix"
+        "matrix",
+        "renovate"
     ]
 }
