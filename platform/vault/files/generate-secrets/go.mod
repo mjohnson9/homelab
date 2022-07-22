@@ -1,6 +1,6 @@
 module git.johnson.computer/mjohnson9/homelab/vault/init
 
-go 1.17
+go 1.18
 
 require (
 	github.com/hashicorp/vault/api v1.7.2
