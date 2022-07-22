@@ -41,3 +41,16 @@
     - key: password
       length: 32
       special: true
+
+# WhatsApp appservice
+- path: matrix/appservice/mautrix-whatsapp/registration
+  data:
+    - key: hs_token
+      length: 64
+      special: false
+    - key: as_token
+      length: 64
+      special: false
+    - key: provisioning_shared_secret
+      length: 64
+      special: false
