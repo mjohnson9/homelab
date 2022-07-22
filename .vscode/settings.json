@@ -9,5 +9,8 @@
         "https://raw.githubusercontent.com/rancher/k3d/main/pkg/config/config.versions.schema.json": "metal/k3d-dev.yaml",
         "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-inventory.json": "metal/inventories/prod.yml",
         "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible.json#/$defs/tasks": "metal/cluster.yml"
-    }
+    },
+    "conventionalCommits.scopes": [
+        "kured"
+    ]
 }
