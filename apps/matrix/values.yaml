@@ -19,6 +19,8 @@ synapse:
 
     dynamic_thumbnails: true
 
+    url_preview_enabled: true
+
     experimental_features:
       msc2716_enabled: true
 
