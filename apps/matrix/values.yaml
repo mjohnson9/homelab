@@ -135,9 +135,6 @@ mautrix-whatsapp:
 
       ephemeral_events: true
 
-      database:
-        uri: postgres://{{ .registration.pg_user }}:{{ .registration.pg_pass }}@shared-cluster.postgresql.svc.cluster.local/mautrix-whatsapp
-
     bridge:
       personal_filtering_spaces: true
       identity_change_notices: true
