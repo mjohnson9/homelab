@@ -8,6 +8,10 @@ k3s_server_config:
     - local-storage
     - servicelb
     - traefik
+
+  cluster-cidr: 10.72.0.0/16
+  service-cidr: 10.73.0.0/16
+
   disable-cloud-controller: true
   secrets-encryption: true
   snapshotter: native
