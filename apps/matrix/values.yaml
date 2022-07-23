@@ -40,6 +40,8 @@ synapse:
 
   workers:
     default:
+      annotations:
+        io.cilium.proxy-visibility: "<Egress/53/UDP/DNS>,<Egress/53/TCP/DNS>"
       strategy:
         type: Recreate
 
