@@ -185,4 +185,4 @@ mautrix-whatsapp:
 
     logging:
       file_name_format: null
-      print_level: debug
+      print_level: info
