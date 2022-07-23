@@ -28,16 +28,24 @@ synapse:
       client_base_url: "https://chat.johnson.gg"
       invite_client_location: "https://app.element.io"
 
+    app_service_config_files:
+      - /synapse/config/appservices/mautrix-whatsapp.yaml
+
   synapse:
     extraVolumes:
       - name: extra-secret-config
         secret:
           secretName: extra-secret-config
+      - name: whatsapp-mautrix-registration
+        secret:
+          secretName: matrix-mautrix-whatsapp-rendered-config
     extraVolumeMounts:
       - name: extra-secret-config
-        mountPath: /run/synapse-extra-secret-config
-    extraCommands:
-      - "cp -av /run/synapse-extra-secret-config/config.yaml /synapse/config/conf.d/extra-secret-config.yaml"
+        mountPath: /synapse/config/conf.d/extra-secret-config.yaml
+        subPath: config.yaml
+      - name: whatsapp-mautrix-registration
+        mountPath: /synapse/config/appservices/mautrix-whatsapp.yaml
+        subPath: registration.yaml
     strategy:
       type: Recreate
 
