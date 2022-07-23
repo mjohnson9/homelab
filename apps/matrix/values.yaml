@@ -13,6 +13,7 @@ synapse:
     publicBaseurl: "https://matrix.johnson.gg"
 
     enableRegistration: false
+    registrationSharedSecret: "overridden in secret config"
 
   extraConfig:
     max_upload_size: &max_size 60M
