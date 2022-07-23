@@ -7,5 +7,5 @@ dependencies:
     version: 2.3.6
     repository: https://ananace.gitlab.io/charts
   - name: mautrix-whatsapp
-    version: 1.1.4
+    version: 1.1.5
     repository: https://mjohnson9.github.io/helm
