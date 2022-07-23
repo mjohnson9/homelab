@@ -16,6 +16,7 @@
         "renovate",
         "prometheus",
         "cilium",
-        "k3s"
+        "k3s",
+        "postgresql"
     ]
 }

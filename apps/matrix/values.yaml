@@ -17,6 +17,9 @@ synapse:
   extraConfig:
     dynamic_thumbnails: true
 
+    experimental_features:
+      msc2716_enabled: true
+
     email:
       smtp_host: "smtp.smtp"
       enable_tls: false
@@ -118,3 +121,46 @@ synapse:
 
   postgresql:
     enabled: false
+
+mautrix-whatsapp:
+  config:
+    homeserver:
+      address: https://matrix.johnson.gg
+      domain: johnson.gg
+
+    appservice:
+      address: http://matrix-mautrix-whatsapp.matrix.svc.cluster.local:29318
+
+      ephemeral_events: true
+
+      database:
+        uri: postgres://{{ .registration.pg_user }}:{{ .registration.pg_pass }}@shared-cluster.postgresql.svc.cluster.local/mautrix-whatsapp
+
+    bridge:
+      personal_filtering_spaces: true
+      identity_change_notices: true
+      private_chat_portal_meta: true
+      disappearing_messages_in_groups: true
+      url_previews: true
+
+      permissions:
+        "johnson.gg": user
+        "@michael:johnson.gg": admin
+
+      history_sync:
+        backfill: true
+        request_full_sync: true
+
+      encryption:
+        allow: true
+        default: true
+        require: true
+        allow_key_sharing: true
+
+        verification_levels:
+          receive: cross-signed-tofu
+          send: cross-signed-tofu
+
+    logging:
+      file_name_format: null
+      print_level: debug
