@@ -123,6 +123,8 @@ synapse:
     enabled: false
 
 mautrix-whatsapp:
+  senderLocalPart: FwH2K76InXpvgGnyr2r368ITzLDj3BSK
+
   config:
     homeserver:
       address: https://matrix.johnson.gg
