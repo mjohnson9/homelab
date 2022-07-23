@@ -20,7 +20,7 @@ synapse:
     email:
       smtp_host: "smtp.smtp"
       enable_tls: false
-      notif_from: "%(app)s <matrix@johnson.gg>"
+      notif_from: "%(app)s <matrix@johnson.computer>"
       enable_notifs: true
       client_base_url: "https://chat.johnson.gg"
       invite_client_location: "https://app.element.io"
