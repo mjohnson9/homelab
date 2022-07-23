@@ -54,6 +54,21 @@ synapse:
       strategy:
         type: Recreate
 
+      volumes:
+        - name: extra-secret-config
+          secret:
+            secretName: extra-secret-config
+        - name: whatsapp-mautrix-registration
+          secret:
+            secretName: matrix-mautrix-whatsapp-rendered-config
+      volumeMounts:
+        - name: extra-secret-config
+          mountPath: /synapse/config/conf.d/extra-secret-config.yaml
+          subPath: config.yaml
+        - name: whatsapp-mautrix-registration
+          mountPath: /run/appservice-mautrix-whatsapp.yaml
+          subPath: registration.yaml
+
     synchrotron:
       enabled: true
       generic: true
