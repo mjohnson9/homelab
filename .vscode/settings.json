@@ -15,6 +15,7 @@
         "matrix",
         "renovate",
         "prometheus",
-        "cilium"
+        "cilium",
+        "k3s"
     ]
 }
