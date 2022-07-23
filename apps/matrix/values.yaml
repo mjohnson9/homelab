@@ -15,6 +15,8 @@ synapse:
     enableRegistration: false
 
   extraConfig:
+    max_upload_size: &max_size 60M
+
     dynamic_thumbnails: true
 
     experimental_features:
@@ -131,6 +133,7 @@ synapse:
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
       hajimari.io/enable: "false"
+      nginx.ingress.kubernetes.io/proxy-body-size: *max_size
 
     wkHosts: ["johnson.gg"]
     csHosts: ["matrix.johnson.gg"]
