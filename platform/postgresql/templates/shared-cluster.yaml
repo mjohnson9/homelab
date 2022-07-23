@@ -13,9 +13,11 @@ spec:
     - superuser
     - createdb
     matrix.synapse: []
+    matrix.mautrix-whatsapp: []
     authentik.authentik: []
   databases:
     synapse: matrix.synapse
+    mautrix-whatsapp: matrix.mautrix-whatsapp
     authentik: authentik.authentik
   postgresql:
     version: "14"
