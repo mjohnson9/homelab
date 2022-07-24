@@ -209,7 +209,43 @@ mautrix-whatsapp:
         verification_levels:
           receive: cross-signed-tofu
           send: cross-signed-tofu
+          share: cross-signed-tofu
 
     logging:
       file_name_format: null
       print_level: info
+
+mautrix-discord:
+  senderLocalPart: todo
+
+  config:
+    homeserver:
+      address: https://matrix.johnson.gg
+      domain: johnson.gg
+
+    appservice:
+      address: http://matrix-mautrix-discord.matrix.svc.cluster.local:29334
+
+      ephemeral_events: true
+
+    bridge:
+      private_chat_portal_meta: true
+
+      encryption:
+        allow: true
+        default: true
+        requiire: true
+        allow_key_sharing: true
+
+        verification_levels:
+          receive: cross-signed-tofu
+          send: cross-signed-tofu
+          share: cross-signed-tofu
+
+      permissions:
+        "johnson.gg": user
+        "@michael:johnson.gg": admin
+
+    logging:
+      file_name_format: null
+      print_level: debug
