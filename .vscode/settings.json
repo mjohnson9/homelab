@@ -18,6 +18,7 @@
         "cilium",
         "k3s",
         "postgresql",
-        "vault"
+        "vault",
+        "ingress-nginx"
     ]
 }
