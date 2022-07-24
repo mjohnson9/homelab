@@ -19,6 +19,7 @@
         "k3s",
         "postgresql",
         "vault",
-        "ingress-nginx"
+        "ingress-nginx",
+        "argocd"
     ]
 }

@@ -33,6 +33,21 @@ argo-cd:
         - secretName: argocd-tls-certificate
           hosts:
             - *host
+    ingressGrpc:
+      enabled: true
+      ingressClassName: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        nginx.ingress.kubernetes.io/grpc-backend: "true"
+
+        # only allow internal clients
+        nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8
+      hosts:
+        - *host
+      tls:
+        - secretName: argocd-tls-certificate
+          hosts:
+            - *host
     metrics: &metrics
       enabled: true
       serviceMonitor:
