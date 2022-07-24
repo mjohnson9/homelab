@@ -251,8 +251,8 @@ mautrix-discord:
 
       encryption:
         allow: true
-        default: true
-        requiire: true
+        default: false
+        require: false
         allow_key_sharing: true
 
         verification_levels:
