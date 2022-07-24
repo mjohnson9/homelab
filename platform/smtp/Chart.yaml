@@ -2,6 +2,7 @@ apiVersion: v2
 name: smtp
 version: 0.0.0
 dependencies:
-  - name: smtp
-    version: 1.0.1
-    repository: https://charts.ntppool.org
+  - name: mail
+    alias: smtp
+    version: 3.5.1
+    repository: https://bokysan.github.io/docker-postfix

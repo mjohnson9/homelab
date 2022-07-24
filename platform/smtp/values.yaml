@@ -1,4 +1,13 @@
 smtp:
   replicaCount: 3
 
-  existingSecret: smtp-secrets
+  recreateOnRedeploy: false
+
+  existingSecret: smtp-credentials
+
+  config:
+    general:
+      TZ: UTC
+      ALLOWED_SENDER_DOMAINS: johnson.gg johnson.computer johnson.software
+      RELAYHOST: "[email-smtp.us-east-1.amazonaws.com]:587"
+      POSTFIX_smtp_tls_security_level: secure
