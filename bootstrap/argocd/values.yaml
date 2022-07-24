@@ -33,6 +33,7 @@ argo-cd:
         - secretName: argocd-tls-certificate
           hosts:
             - *host
+            -
     ingressGrpc:
       enabled: true
       ingressClassName: nginx
@@ -43,11 +44,11 @@ argo-cd:
         # only allow internal clients
         nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8
       hosts:
-        - *host
+        - &rpcHost grpc.argocd.johnson.computer
       tls:
-        - secretName: argocd-tls-certificate
+        - secretName: argocd-grpc-tls-certificate
           hosts:
-            - *host
+            - *rpcHost
     metrics: &metrics
       enabled: true
       serviceMonitor:
