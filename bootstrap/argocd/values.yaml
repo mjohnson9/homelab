@@ -33,7 +33,6 @@ argo-cd:
         - secretName: argocd-tls-certificate
           hosts:
             - *host
-            -
     ingressGrpc:
       enabled: true
       ingressClassName: nginx
