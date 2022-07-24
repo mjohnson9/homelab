@@ -20,6 +20,7 @@
         "postgresql",
         "vault",
         "ingress-nginx",
-        "argocd"
+        "argocd",
+        "hajimari"
     ]
 }
