@@ -47,11 +47,12 @@ cilium:
 
       ingress:
         enabled: true
-        ingressClassName: cilium
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-prod
           hajimari.io/appName: Hubble
           hajimari.io/icon: telescope
+
+          kubernetes.io/ingress.class: cilium
 
           # only allow internal clients
           nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8
