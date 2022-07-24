@@ -53,6 +53,11 @@ synapse:
       client_base_url: "https://chat.johnson.gg"
       invite_client_location: "https://app.element.io"
 
+    rc_joins:
+      local:
+        per_second: 0.2
+        burst_count: 10
+
     app_service_config_files:
       - /run/appservice-mautrix-whatsapp.yaml
       - /run/appservice-mautrix-discord.yaml
