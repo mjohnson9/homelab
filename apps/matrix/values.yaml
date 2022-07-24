@@ -169,7 +169,7 @@ synapse:
   ingress:
     enabled: true
     includeServerName: false
-    includeUnderscoreSynapse: false
+    includeUnderscoreSynapse: true
 
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
