@@ -216,7 +216,7 @@ mautrix-whatsapp:
       print_level: info
 
 mautrix-discord:
-  senderLocalPart: todo
+  senderLocalPart: b4aDftoUvQCiK7Fxonb4VgRLYfVKcjgY
 
   config:
     homeserver:
