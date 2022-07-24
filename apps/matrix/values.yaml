@@ -157,6 +157,7 @@ synapse:
       cert-manager.io/cluster-issuer: letsencrypt-prod
       hajimari.io/enable: "false"
       nginx.ingress.kubernetes.io/proxy-body-size: *max_size
+      nginx.ingress.kubernetes.io/proxy-read-timeout: 3600
 
     wkHosts: ["johnson.gg"]
     csHosts: ["matrix.johnson.gg"]
