@@ -248,6 +248,7 @@ mautrix-discord:
 
     bridge:
       private_chat_portal_meta: true
+      delivery_receipts: true
 
       encryption:
         allow: true
