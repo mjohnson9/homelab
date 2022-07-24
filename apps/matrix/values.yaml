@@ -55,21 +55,28 @@ synapse:
 
     app_service_config_files:
       - /run/appservice-mautrix-whatsapp.yaml
+      - /run/appservice-mautrix-discord.yaml
 
   synapse:
     extraVolumes:
       - name: extra-secret-config
         secret:
           secretName: extra-secret-config
-      - name: whatsapp-mautrix-registration
+      - name: mautrix-whatsapp-registration
         secret:
           secretName: matrix-mautrix-whatsapp-rendered-config
+      - name: mautrix-discord-registration
+        secret:
+          secretName: matrix-mautrix-discord-rendered-config
     extraVolumeMounts:
       - name: extra-secret-config
         mountPath: /synapse/config/conf.d/extra-secret-config.yaml
         subPath: config.yaml
-      - name: whatsapp-mautrix-registration
+      - name: mautrix-whatsapp-registration
         mountPath: /run/appservice-mautrix-whatsapp.yaml
+        subPath: registration.yaml
+      - name: mautrix-discord-registration
+        mountPath: /run/appservice-mautrix-discord.yaml
         subPath: registration.yaml
     strategy:
       type: Recreate
