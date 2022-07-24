@@ -5,6 +5,9 @@ smtp:
 
   existingSecret: smtp-credentials
 
+  service:
+    port: 25
+
   config:
     general:
       TZ: UTC
