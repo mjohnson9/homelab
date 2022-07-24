@@ -18,6 +18,10 @@ cilium:
   autoDirectNodeRoutes: true
   ipv4NativeRoutingCIDR: "10.42.0.0/16"
 
+  # enable the Cilium ingress controller
+  ingressController:
+    enabled: true
+
   bpf:
     masquerade: true
 
