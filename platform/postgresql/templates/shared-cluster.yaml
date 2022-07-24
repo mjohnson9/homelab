@@ -14,10 +14,12 @@ spec:
     - createdb
     matrix.synapse: []
     matrix.mautrix-whatsapp: []
+    matrix.mautrix-discord: []
     authentik.authentik: []
   databases:
     synapse: matrix.synapse
     mautrix_whatsapp: matrix.mautrix-whatsapp
+    mautrix_discord: matrix.mautrix-discord
     authentik: authentik.authentik
   postgresql:
     version: "14"
