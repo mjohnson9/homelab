@@ -261,4 +261,4 @@ mautrix-discord:
 
     logging:
       file_name_format: null
-      print_level: debug
+      print_level: info
