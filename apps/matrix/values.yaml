@@ -222,6 +222,11 @@ mautrix-whatsapp:
       disappearing_messages_in_groups: true
       url_previews: true
 
+      disable_status_broadcast_send: false
+
+      # Disable because appservice.ephemeral_events is true
+      sync_with_custom_puppets: false
+
       permissions:
         "johnson.gg": user
         "@michael:johnson.gg": admin
