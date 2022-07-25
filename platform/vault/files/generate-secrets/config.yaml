@@ -43,6 +43,12 @@
       special: true
 
 # Matrix appservices
+- path: matrix/appservice/impersonation
+  data:
+    - key: shared_secret
+      length: 128
+      special: true
+
 - path: matrix/appservice/mautrix-whatsapp/registration
   data:
     - key: hs_token
