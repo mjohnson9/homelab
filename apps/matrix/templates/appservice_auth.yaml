@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: shared-secret-authenticator
+data:
+  shared_secret_authenticator.py: |
+    {{ .Files.Get "files/shared_secret_authenticator.py" | quote }}

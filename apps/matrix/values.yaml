@@ -64,6 +64,9 @@ synapse:
 
   synapse:
     extraVolumes:
+      - name: shared-secret-authenticator
+        configMap:
+          name: shared-secret-authenticator
       - name: extra-secret-config
         secret:
           secretName: extra-secret-config
@@ -74,6 +77,9 @@ synapse:
         secret:
           secretName: matrix-mautrix-discord-rendered-config
     extraVolumeMounts:
+      - name: shared-secret-authenticator
+        mountPath: /usr/local/lib/python3.9/site-packages/shared_secret_authenticator.py
+        subPath: shared_secret_authenticator.py
       - name: extra-secret-config
         mountPath: /synapse/config/conf.d/extra-secret-config.yaml
         subPath: config.yaml
@@ -92,6 +98,9 @@ synapse:
         type: Recreate
 
       volumes:
+        - name: shared-secret-authenticator
+          configMap:
+            name: shared-secret-authenticator
         - name: extra-secret-config
           secret:
             secretName: extra-secret-config
@@ -102,6 +111,9 @@ synapse:
           secret:
             secretName: matrix-mautrix-discord-rendered-config
       volumeMounts:
+        - name: shared-secret-authenticator
+          mountPath: /usr/local/lib/python3.9/site-packages/shared_secret_authenticator.py
+          subPath: shared_secret_authenticator.py
         - name: extra-secret-config
           mountPath: /synapse/config/conf.d/extra-secret-config.yaml
           subPath: config.yaml
