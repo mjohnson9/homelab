@@ -92,67 +92,6 @@ synapse:
     strategy:
       type: Recreate
 
-  workers:
-    default:
-      strategy:
-        type: Recreate
-
-      volumes:
-        - name: shared-secret-authenticator
-          configMap:
-            name: shared-secret-authenticator
-        - name: extra-secret-config
-          secret:
-            secretName: extra-secret-config
-        - name: mautrix-whatsapp-registration
-          secret:
-            secretName: matrix-mautrix-whatsapp-rendered-config
-        - name: mautrix-discord-registration
-          secret:
-            secretName: matrix-mautrix-discord-rendered-config
-      volumeMounts:
-        - name: shared-secret-authenticator
-          mountPath: /usr/local/lib/python3.9/site-packages/shared_secret_authenticator.py
-          subPath: shared_secret_authenticator.py
-        - name: extra-secret-config
-          mountPath: /synapse/config/conf.d/extra-secret-config.yaml
-          subPath: config.yaml
-        - name: mautrix-whatsapp-registration
-          mountPath: /run/appservice-mautrix-whatsapp.yaml
-          subPath: registration.yaml
-        - name: mautrix-discord-registration
-          mountPath: /run/appservice-mautrix-discord.yaml
-          subPath: registration.yaml
-
-    synchrotron:
-      enabled: true
-      generic: true
-      listeners: [client]
-      csPaths:
-        - "/_matrix/client/(v2_alpha|r0|v3)/sync"
-        - "/_matrix/client/(api/v1|v2_alpha|r0|v3)/events"
-        - "/_matrix/client/(api/v1|r0|v3)/initialSync"
-        - "/_matrix/client/(api/v1|r0|v3)/rooms/[^/]+/initialSync"
-
-    federation_reader:
-      enabled: true
-      generic: true
-      listeners: [federation]
-      paths:
-        - "/_matrix/federation/v1/send/"
-
-    federation_sender:
-      strategy:
-        type: RollingUpdate
-
-      enabled: true
-
-    appservice:
-      enabled: true
-
-    media_repository:
-      enabled: true
-
   wellknown:
     enabled: true
 
